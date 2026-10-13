@@ -1,0 +1,721 @@
+{
+  "788616": {
+    "mode": "full",
+    "photos": [
+      5,
+      6,
+      7,
+      4,
+      8
+    ]
+  },
+  "414013": {
+    "mode": "full",
+    "photos": [
+      6,
+      4,
+      7,
+      5,
+      3
+    ]
+  },
+  "800236": {
+    "mode": "full",
+    "photos": [
+      6,
+      5,
+      4,
+      3
+    ]
+  },
+  "800242": {
+    "mode": "full",
+    "photos": [
+      6,
+      5,
+      4,
+      3
+    ]
+  },
+  "46756": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        90,
+        100,
+        400,
+        480
+      ],
+      [
+        980,
+        100,
+        400,
+        480
+      ],
+      [
+        100,
+        950,
+        400,
+        480
+      ],
+      [
+        1000,
+        950,
+        400,
+        480
+      ],
+      [
+        550,
+        590,
+        400,
+        480
+      ]
+    ],
+    "normalized_to": 1500
+  },
+  "46759": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        90,
+        100,
+        400,
+        480
+      ],
+      [
+        980,
+        100,
+        400,
+        480
+      ],
+      [
+        100,
+        950,
+        400,
+        480
+      ],
+      [
+        1000,
+        950,
+        400,
+        480
+      ],
+      [
+        550,
+        590,
+        400,
+        480
+      ]
+    ],
+    "normalized_to": 1500
+  },
+  "46761": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        90,
+        100,
+        400,
+        480
+      ],
+      [
+        980,
+        100,
+        400,
+        480
+      ],
+      [
+        100,
+        950,
+        400,
+        480
+      ],
+      [
+        1000,
+        950,
+        400,
+        480
+      ],
+      [
+        550,
+        590,
+        400,
+        480
+      ]
+    ],
+    "normalized_to": 1500
+  },
+  "778601": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        90,
+        100,
+        400,
+        480
+      ],
+      [
+        980,
+        100,
+        400,
+        480
+      ],
+      [
+        100,
+        950,
+        400,
+        480
+      ],
+      [
+        1000,
+        950,
+        400,
+        480
+      ],
+      [
+        550,
+        590,
+        400,
+        480
+      ]
+    ],
+    "normalized_to": 1500
+  },
+  "414627": {
+    "mode": "full",
+    "photos": [
+      7,
+      5,
+      6,
+      4,
+      3
+    ]
+  },
+  "414629": {
+    "mode": "collage",
+    "source": 1,
+    "reason": "One full design unavailable; narrow visible areas do not show football poses well"
+  },
+  "414634": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        100,
+        370,
+        444
+      ],
+      [
+        1040,
+        100,
+        370,
+        444
+      ],
+      [
+        100,
+        950,
+        370,
+        444
+      ],
+      [
+        1040,
+        950,
+        370,
+        444
+      ],
+      [
+        530,
+        460,
+        370,
+        444
+      ]
+    ]
+  },
+  "63450": {
+    "mode": "full",
+    "photos": [
+      3,
+      4,
+      5,
+      6,
+      2
+    ]
+  },
+  "414010": {
+    "mode": "collage",
+    "source": 1,
+    "reason": "Missing full beige-car design; fragment narrowness cuts vehicle silhouette"
+  },
+  "414008": {
+    "mode": "collage",
+    "source": 1,
+    "reason": "Missing pink full design; artwork and slogan would be cut in visible fragment"
+  },
+  "778746": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        100,
+        370,
+        444
+      ],
+      [
+        1040,
+        100,
+        370,
+        444
+      ],
+      [
+        100,
+        950,
+        370,
+        444
+      ],
+      [
+        1040,
+        950,
+        370,
+        444
+      ],
+      [
+        530,
+        460,
+        370,
+        444
+      ]
+    ]
+  },
+  "63286": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        100,
+        370,
+        444
+      ],
+      [
+        1040,
+        100,
+        370,
+        444
+      ],
+      [
+        100,
+        950,
+        370,
+        444
+      ],
+      [
+        1040,
+        950,
+        370,
+        444
+      ],
+      [
+        530,
+        460,
+        370,
+        444
+      ]
+    ]
+  },
+  "63184": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63218": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63185": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63197": {
+    "mode": "full",
+    "photos": [
+      5,
+      4,
+      3,
+      2,
+      6
+    ]
+  },
+  "788219": {
+    "mode": "full",
+    "photos": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "317073": {
+    "mode": "full",
+    "photos": [
+      6,
+      4,
+      7,
+      3,
+      5
+    ]
+  },
+  "63345": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        100,
+        370,
+        444
+      ],
+      [
+        1040,
+        100,
+        370,
+        444
+      ],
+      [
+        100,
+        950,
+        370,
+        444
+      ],
+      [
+        1040,
+        950,
+        370,
+        444
+      ],
+      [
+        530,
+        460,
+        370,
+        444
+      ]
+    ]
+  },
+  "63101": {
+    "mode": "full",
+    "photos": [
+      2,
+      5,
+      4,
+      3,
+      6
+    ],
+    "note": "Only the five designs matching original collage photo 1; newer distinct photo-7 series excluded"
+  },
+  "63140": {
+    "mode": "collage",
+    "source": 1,
+    "reason": "Car silhouettes do not fit the visible unobscured rectangles"
+  },
+  "63524": {
+    "mode": "collage",
+    "source": 1,
+    "reason": "Each cover itself contains a patchwork collage; fragments would lose composition"
+  },
+  "63143": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        120,
+        300,
+        360
+      ],
+      [
+        510,
+        460,
+        300,
+        360
+      ],
+      [
+        950,
+        800,
+        300,
+        360
+      ]
+    ]
+  },
+  "63528": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        50,
+        170,
+        400,
+        480
+      ],
+      [
+        510,
+        470,
+        400,
+        480
+      ],
+      [
+        985,
+        840,
+        400,
+        480
+      ]
+    ]
+  },
+  "63144": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        120,
+        300,
+        360
+      ],
+      [
+        510,
+        460,
+        300,
+        360
+      ],
+      [
+        950,
+        800,
+        300,
+        360
+      ]
+    ]
+  },
+  "63030": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63029": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63092": {
+    "mode": "collage",
+    "source": 1,
+    "reason": "Each design contains several architecture photos; fragments lose the complete composition"
+  },
+  "63491": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        100,
+        370,
+        444
+      ],
+      [
+        1040,
+        100,
+        370,
+        444
+      ],
+      [
+        100,
+        950,
+        370,
+        444
+      ],
+      [
+        1040,
+        950,
+        370,
+        444
+      ],
+      [
+        530,
+        460,
+        370,
+        444
+      ]
+    ]
+  },
+  "63045": {
+    "mode": "full",
+    "photos": [
+      4,
+      7,
+      5,
+      6
+    ]
+  },
+  "63085": {
+    "mode": "full",
+    "photos": [
+      6,
+      3,
+      4,
+      5,
+      2
+    ]
+  },
+  "63492": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        100,
+        370,
+        444
+      ],
+      [
+        1040,
+        100,
+        370,
+        444
+      ],
+      [
+        100,
+        950,
+        370,
+        444
+      ],
+      [
+        1040,
+        950,
+        370,
+        444
+      ],
+      [
+        530,
+        460,
+        370,
+        444
+      ]
+    ]
+  },
+  "63496": {
+    "mode": "collage",
+    "source": 1,
+    "reason": "Cars do not fit intact in unobscured portrait fragments"
+  },
+  "63277": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63050": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63141": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "63489": {
+    "mode": "full",
+    "photos": [
+      2,
+      4,
+      3,
+      5,
+      6
+    ]
+  },
+  "63493": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        100,
+        100,
+        370,
+        444
+      ],
+      [
+        1040,
+        100,
+        370,
+        444
+      ],
+      [
+        100,
+        950,
+        370,
+        444
+      ],
+      [
+        1040,
+        950,
+        370,
+        444
+      ],
+      [
+        530,
+        460,
+        370,
+        444
+      ]
+    ]
+  },
+  "63078": {
+    "mode": "isolated",
+    "source": 3,
+    "count": 4
+  },
+  "63083": {
+    "mode": "isolated",
+    "source": 1,
+    "count": 4
+  },
+  "325744": {
+    "mode": "full",
+    "photos": [
+      6,
+      4,
+      3,
+      2,
+      5
+    ]
+  },
+  "63217": {
+    "mode": "fragments",
+    "source": 1,
+    "rects": [
+      [
+        50,
+        250,
+        400,
+        480
+      ],
+      [
+        480,
+        620,
+        360,
+        432
+      ],
+      [
+        940,
+        960,
+        400,
+        480
+      ]
+    ]
+  }
+}

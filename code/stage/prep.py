@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from samson_download import download as samson_download, is_samson, valid as cached_image_valid
 # Шаг 2. goods.json (товар, карточки, номера кадров U/W/AA/AB в карусели поставщика, характеристики, описание) + скачивание кадров U и W в src/
 import json, collections, urllib.parse, os, subprocess, concurrent.futures as cf
 c=json.load(open('cards.json')); h=c['hdr']; ix={n:i for i,n in enumerate(h)}
@@ -27,8 +31,11 @@ UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safa
 jobs={(x['code'],x[k],x[k+'url']) for x in goods for k in ('U','W') if x[k]}
 def dl(j):
     code,i,u=j; p=f'src/{code}_{i:02d}.jpg'
-    if os.path.exists(p) and os.path.getsize(p)>2000: return 0
+    if cached_image_valid(p): return 0
     uu=urllib.parse.quote(urllib.parse.unquote(u),safe=':/?=&').replace('http://','https://')
+    if is_samson(uu):
+        try: samson_download(uu,p); return 0
+        except Exception as e: return (code,i,str(e))
     r=subprocess.run(['curl','-s','-L','-A',UA,'--max-time','60','-o',p,'-w','%{http_code}',uu],capture_output=True,text=True)
     return 0 if r.stdout.strip()=='200' else (code,i,r.stdout)
 with cf.ThreadPoolExecutor(10) as ex: res=list(ex.map(dl,sorted(jobs)))

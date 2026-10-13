@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from samson_download import download as samson_download, is_samson, valid as cached_image_valid
 import json, collections, urllib.parse, os, subprocess, concurrent.futures as cf
 c=json.load(open('../cards.json')); h=c['hdr']; ix={n:i for i,n in enumerate(h)}
 g=json.load(open('../goods44.json')); gh=g['hdr']
@@ -24,8 +28,11 @@ json.dump(goods,open('goods.json','w'),ensure_ascii=False,indent=1)
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36"
 def dl(j):
     code,i,u=j; p=f'src/{code}_{i:02d}.jpg'
-    if os.path.exists(p) and os.path.getsize(p)>2000: return 0
+    if cached_image_valid(p): return 0
     uu=urllib.parse.quote(urllib.parse.unquote(u),safe=':/?=&').replace('http://','https://')
+    if is_samson(uu):
+        try: samson_download(uu,p); return 0
+        except Exception as e: return (code,i,str(e))
     r=subprocess.run(['curl','-s','-L','-A',UA,'-o',p,'-w','%{http_code}',uu],capture_output=True,text=True)
     return 0 if r.stdout.strip()=='200' else (code,i,r.stdout)
 with cf.ThreadPoolExecutor(12) as ex: res=list(ex.map(dl,jobs))

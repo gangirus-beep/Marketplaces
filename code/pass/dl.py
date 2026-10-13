@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from samson_download import download as samson_download, is_samson, valid as cached_image_valid
 # Проход, шаг 1. Скачивание всех фото поставщика по типу (после extract.py): all/код_NN.jpg, urls.json. Запускать в фоне: setsid nohup python3 dl.py > dl.log 2>&1 &
 import json, os, urllib.parse, urllib.request, concurrent.futures as cf, time
 g=json.load(open('goods_t.json')); gh=g['hdr']; gx={n:i for i,n in enumerate(gh)}
@@ -16,7 +20,10 @@ jobs=[(f'all/{k}_{i+1:02d}.jpg',enc(u)) for k,ph in urls.items() for i,u in enum
 H={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'}
 def get(j):
     p,u=j
-    if os.path.exists(p) and os.path.getsize(p)>500: return p,'have'
+    if cached_image_valid(p): return p,'have'
+    if is_samson(u):
+        try: samson_download(u,p); return p,'ok'
+        except Exception as e: return p,'ERR '+str(e)+' '+u
     for t in range(4):
         try:
             d=urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=40).read()

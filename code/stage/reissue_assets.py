@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from samson_download import download as samson_download, is_samson
 import json,io,hashlib,subprocess,concurrent.futures as cf,sys,zipfile,math
 from pathlib import Path
 import numpy as np
@@ -65,6 +69,9 @@ def dl(j):
  u,p=j
  try:Image.open(p).load();return None
  except:pass
+ if is_samson(u):
+  try:samson_download(u.replace('http://','https://'),p);return None
+  except Exception as error:return str(p)+' '+str(error)
  t=Path(str(p)+'.part');r=subprocess.run(['curl','-sS','-L','--retry','1','--max-time','35','-A','Mozilla/5.0','-o',str(t),u.replace('http://','https://')],capture_output=True)
  try:Image.open(t).load();t.replace(p);return None
  except:t.unlink(missing_ok=True);return str(p)

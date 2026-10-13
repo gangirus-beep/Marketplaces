@@ -1,0 +1,991 @@
+{
+  "goods": 46,
+  "covers": 139,
+  "goodsModes": {
+    "full": 14,
+    "fragments": 15,
+    "collage": 7,
+    "isolated": 10
+  },
+  "coverModes": {
+    "full": 82,
+    "fragments": 39,
+    "collage": 18
+  },
+  "maxTextBottom": 967.1875,
+  "checks": [
+    {
+      "file": "800236_10.jpg",
+      "sha256": "8dc824ecb7a7d3dc17d7dc2f1e36f38c3c7e4b12778950b84a1b87260312774b",
+      "size": 222006,
+      "headerMeanDiff": 0.8292145969498911,
+      "footerMeanDiff": 0.5209081196581197
+    },
+    {
+      "file": "800236_20.jpg",
+      "sha256": "acdc2ec3ad9f295ff9a428fe49af8ed11784b450192604b701391d5c46fee5d1",
+      "size": 228213,
+      "headerMeanDiff": 0.8738605664488017,
+      "footerMeanDiff": 0.5209081196581197
+    },
+    {
+      "file": "800236_30.jpg",
+      "sha256": "eb6f8014998ba67e87e7414e8e5347376634b33e9c545b0ca2e4219fdfd1f9d8",
+      "size": 210424,
+      "headerMeanDiff": 0.8766481481481482,
+      "footerMeanDiff": 0.5209081196581197
+    },
+    {
+      "file": "800236_40.jpg",
+      "sha256": "19d05431e0a029ee3585d5d25186ca544924b93a21d882427e6fcc2408a82d39",
+      "size": 209934,
+      "headerMeanDiff": 0.8541078431372549,
+      "footerMeanDiff": 0.5209081196581197
+    },
+    {
+      "file": "800236_50.jpg",
+      "sha256": "894e6519fd85a58251000378bca6d671bf6fbf5a43c0507a5f950339b2798859",
+      "size": 211366,
+      "headerMeanDiff": 0.8731470588235294,
+      "footerMeanDiff": 0.5209081196581197
+    },
+    {
+      "file": "800242_10.jpg",
+      "sha256": "cd8e98b5a82314cf904453d47d0d682280771c2aea4b02932b775b44e6292f11",
+      "size": 191780,
+      "headerMeanDiff": 0.6200087145969498,
+      "footerMeanDiff": 0.3202314814814815
+    },
+    {
+      "file": "800242_20.jpg",
+      "sha256": "074a370394cc0a4589c62cd4123764f0c14ee7c7c052522949a41a7ff729b3a2",
+      "size": 196638,
+      "headerMeanDiff": 0.6708093681917211,
+      "footerMeanDiff": 0.3202314814814815
+    },
+    {
+      "file": "800242_30.jpg",
+      "sha256": "ca5a8466f17d1fb3261f7ee7c591be7b0e079df3a7485a66165ff805a3ad8bfd",
+      "size": 172240,
+      "headerMeanDiff": 0.6734901960784314,
+      "footerMeanDiff": 0.3202314814814815
+    },
+    {
+      "file": "800242_40.jpg",
+      "sha256": "e5518250be892a6d70a4aea1185417f4e2c4cf93c1e3438e635b1e681fe14b1b",
+      "size": 171299,
+      "headerMeanDiff": 0.6530762527233116,
+      "footerMeanDiff": 0.3202314814814815
+    },
+    {
+      "file": "800242_50.jpg",
+      "sha256": "eb9855f24c76ea9a07a72f77b3572cf129dd5c497ada930ca61884efcc9dede2",
+      "size": 172541,
+      "headerMeanDiff": 0.6702298474945534,
+      "footerMeanDiff": 0.3202314814814815
+    },
+    {
+      "file": "63029_1.jpg",
+      "sha256": "8fe54e72bd2ee956d22c773c08dae84cfaca11aae3e62055fff4195aa7f1585b",
+      "size": 181899,
+      "headerMeanDiff": 0.6354673202614379,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63029_2.jpg",
+      "sha256": "d486dd620cdb8b52e7839e7092ecba85c785aa84f4838b493fb2c260b3f8dbb8",
+      "size": 204393,
+      "headerMeanDiff": 0.6803638344226579,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63029_3.jpg",
+      "sha256": "daf17ba29d21445e319e8a1742de9906c205b3e96da941c7e09eeee26df9f987",
+      "size": 215443,
+      "headerMeanDiff": 0.6853028322440087,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63029_5.jpg",
+      "sha256": "c0a650c31300f97d3e2f198a08a02666bff8e3c97969077a0a2d586bac3a116f",
+      "size": 211152,
+      "headerMeanDiff": 0.70019825708061,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63029_8.jpg",
+      "sha256": "4fc70d83b44f2e41a1392e3e91e45c1eda357a0fce24358a8497fed859e5185f",
+      "size": 215114,
+      "headerMeanDiff": 0.7086993464052288,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63030_1.jpg",
+      "sha256": "caa08e895b422f270c4c92721d84224a9b9b87e5f7b79fb1dfd9882ce510878f",
+      "size": 179235,
+      "headerMeanDiff": 0.6445599128540305,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63030_2.jpg",
+      "sha256": "38f53e14da6e7958737570cd2b5a3e151e1c8dcd5740e945f18e00d229a4888a",
+      "size": 199413,
+      "headerMeanDiff": 0.6892200435729847,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63030_3.jpg",
+      "sha256": "1b7f59ce52f46350f262b6b4ff821ffb1dfc6ed31e4edc9839f216bb91e68462",
+      "size": 208419,
+      "headerMeanDiff": 0.6943191721132898,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63030_5.jpg",
+      "sha256": "45d488a81bdeebcf71221d361097bb2a565efcea796e1fb01b5e64f71048d406",
+      "size": 207001,
+      "headerMeanDiff": 0.7091579520697168,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63030_8.jpg",
+      "sha256": "7a29f3bbe6414aa0725b24eab2aebcd13db50464cdd258a6b0376c777900f27c",
+      "size": 211128,
+      "headerMeanDiff": 0.7178572984749455,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63101_5.jpg",
+      "sha256": "c16b10be405bd60b6cd394afa1f6077d4b5d4a6c7c20a50b1404cd86c3e3429d",
+      "size": 253195,
+      "headerMeanDiff": 0.7166296296296296,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63101_10.jpg",
+      "sha256": "d9fbc67c452de854170b7faf479161d4ca279911b555133627a0295515850c64",
+      "size": 290567,
+      "headerMeanDiff": 0.7478540305010893,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63101_15.jpg",
+      "sha256": "f50a06e46b8f3dc81149a1c90c6f9a22edc7c69db67cb444d51d314992639cf8",
+      "size": 266532,
+      "headerMeanDiff": 0.7565708061002179,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63218_3.jpg",
+      "sha256": "1c16be22507ac84a1727c1dfebcbf742e48a7c64e3ed20f3ff565cda49c3c1ab",
+      "size": 269065,
+      "headerMeanDiff": 0.6706840958605664,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63218_5.jpg",
+      "sha256": "77a1377c02214a485497f7e84fc5ab193201e29d49bcc507bdf7d57e4d530063",
+      "size": 242588,
+      "headerMeanDiff": 0.6912113289760349,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63218_10.jpg",
+      "sha256": "6044988e65f15243a87666d56d94c1e2ba671f86332b09a58ee102047fc67798",
+      "size": 278315,
+      "headerMeanDiff": 0.7264095860566449,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63218_16.jpg",
+      "sha256": "38ba7a3c74f377ac9f45402c0be9feb24ab3a1d5a9532d4a99b0a0ba141a408f",
+      "size": 256091,
+      "headerMeanDiff": 0.7294183006535948,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63218_20.jpg",
+      "sha256": "5ed4b857b804b3976657d4c66bc30aee483b0557451ff8d3803cf1bf342465b1",
+      "size": 273490,
+      "headerMeanDiff": 0.7750566448801743,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63217_5.jpg",
+      "sha256": "408ffb174a57d9dd605aab36f590154b8424e55f396630ab695f63ef3166dec3",
+      "size": 224754,
+      "headerMeanDiff": 0.694078431372549,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63217_10.jpg",
+      "sha256": "a5de751d141a77299a42da1bdd4ab690d75a43be835dcb3d838002690b03af2e",
+      "size": 254755,
+      "headerMeanDiff": 0.7252233115468409,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63217_15.jpg",
+      "sha256": "ad59b95b4480250cfacdcf2b865a5c743bae11faf7dcf39f4f4d3f54d5b8c34c",
+      "size": 245987,
+      "headerMeanDiff": 0.7330653594771241,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63217_20.jpg",
+      "sha256": "d18b63a42b4bf66610369668c999dfaa063960f3c9c78e4d9f66778b05552379",
+      "size": 267466,
+      "headerMeanDiff": 0.7740141612200436,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63217_30.jpg",
+      "sha256": "3034e14913e9d40f288a5b5e9ae47f2077751fdd01b15d2730fbfb75d9c8fb8b",
+      "size": 209609,
+      "headerMeanDiff": 0.7764912854030501,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "46756_20.jpg",
+      "sha256": "c1e762ad2e01c2299dfd9fc39cfaf930cd3b7b98745b2a648aaaee744a22c938",
+      "size": 231742,
+      "headerMeanDiff": 0.8618017429193899,
+      "footerMeanDiff": 0.47420584045584047
+    },
+    {
+      "file": "46756_40.jpg",
+      "sha256": "dfd35c81965beb107f06a6ddcba71a115ea57ff73fcd3eb05ab0e8f705143436",
+      "size": 214429,
+      "headerMeanDiff": 0.842755991285403,
+      "footerMeanDiff": 0.47420584045584047
+    },
+    {
+      "file": "46756_60.jpg",
+      "sha256": "d7f02e2f3bd09eaedc7d0b453d7bb2fe92f70abcb1e8abedd79d25c9e554f0c4",
+      "size": 216358,
+      "headerMeanDiff": 0.8557668845315904,
+      "footerMeanDiff": 0.47420584045584047
+    },
+    {
+      "file": "63184_5.jpg",
+      "sha256": "596e974c6e2d285845cae0bec78863f15da000829a2506bb7060699c84e909c1",
+      "size": 175428,
+      "headerMeanDiff": 0.7054063180827886,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63184_10.jpg",
+      "sha256": "71f79dafef55ec53c885f7e5c5a2fb70fe9378f701803000f7f4ae78ddad119e",
+      "size": 178759,
+      "headerMeanDiff": 0.7360980392156863,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63184_15.jpg",
+      "sha256": "cd3d50a958399334212c9210a4483db2f382c10100c3589c4265db50f8ca68ee",
+      "size": 183207,
+      "headerMeanDiff": 0.7441633986928105,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63184_20.jpg",
+      "sha256": "ab2c66b1ab530b81ff60be4a4c3d50a4db659c1ddde49b63456e6639c7c0f11f",
+      "size": 189249,
+      "headerMeanDiff": 0.78510348583878,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63184_30.jpg",
+      "sha256": "b1eb8a0e5285b9d27ffa5456d3fc67939ed988ee1aeaccfa077e464719a4e3b8",
+      "size": 190630,
+      "headerMeanDiff": 0.7877625272331155,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63185_5.jpg",
+      "sha256": "1871725cfb22bf9a0ba8a8672d6425255ea13b1db71bf6a502850b8239b3d643",
+      "size": 252227,
+      "headerMeanDiff": 0.7099183006535947,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63185_10.jpg",
+      "sha256": "11be5f04be0de482ab5712467ad44d8c8a2edb92b5cacf7f9b40e5d938b95bff",
+      "size": 273358,
+      "headerMeanDiff": 0.7458257080610021,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63185_15.jpg",
+      "sha256": "7ef9d439a6de374ae085ae8217eef219eecae885b2f5e60fd2883c71147b14f6",
+      "size": 263148,
+      "headerMeanDiff": 0.7530664488017429,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63185_20.jpg",
+      "sha256": "dd0aa1d0b39eb297ae85065f1c8429cedce48f7a2282c53069f220bb0fb095e4",
+      "size": 285524,
+      "headerMeanDiff": 0.7955457516339869,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63185_30.jpg",
+      "sha256": "953fa129b5cb3b2d88ad0224632d29cfc9b3228636f062540247b0aa5e12046a",
+      "size": 248385,
+      "headerMeanDiff": 0.7937777777777778,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "46759_20.jpg",
+      "sha256": "c6c8d86fdf025f4a08c868f5ab094d709a0203be479a524daa108e8d7985be5d",
+      "size": 228282,
+      "headerMeanDiff": 0.8590130718954249,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "46759_40.jpg",
+      "sha256": "36d7a6ad21ef3bb2381de764bc70d5cda02d1536ac34129c0b8c56c2d0288249",
+      "size": 208915,
+      "headerMeanDiff": 0.837995642701525,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "46759_60.jpg",
+      "sha256": "69e0aca821038d0ea71d14bc21ae5239989e23bd787734f8ce1785124d954e16",
+      "size": 211009,
+      "headerMeanDiff": 0.8526906318082789,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "46761_20.jpg",
+      "sha256": "ee57b6be83ae3381ddadf480b6e4549b21f61a31ed509beca71352236e7f1fa6",
+      "size": 231457,
+      "headerMeanDiff": 0.8876427015250544,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "46761_40.jpg",
+      "sha256": "3a8b7c894eadc6ba77e2463de8d683399d4a712f5b1e4746e3bbe99e7c074740",
+      "size": 211282,
+      "headerMeanDiff": 0.8623366013071896,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "46761_60.jpg",
+      "sha256": "eea201e66b8bc67718f65f1494476208fee1acf74edf0634fb982043ec395d58",
+      "size": 213454,
+      "headerMeanDiff": 0.8770610021786492,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "63083_1.jpg",
+      "sha256": "c2fcd0bf0bf52244e576a1a8bb2454600dba13164e29b033aad124f1c44fee91",
+      "size": 212502,
+      "headerMeanDiff": 0.732735294117647,
+      "footerMeanDiff": 0.5275872507122508
+    },
+    {
+      "file": "63083_2.jpg",
+      "sha256": "d612c2d835d62028f2e6a977d1f71648975ac1fde910db9b4c77c8479464128b",
+      "size": 238803,
+      "headerMeanDiff": 0.770446623093682,
+      "footerMeanDiff": 0.5275872507122508
+    },
+    {
+      "file": "414008_20.jpg",
+      "sha256": "8d305d525ed5b6278e5078be404a3697449a8d9f8ddb59fa064b2add33a36445",
+      "size": 227447,
+      "headerMeanDiff": 0.8015511982570807,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414008_40.jpg",
+      "sha256": "5eaae7f8adb2765651d9da493bf23aa663ffb98c539d415249dbe07cf6717337",
+      "size": 201901,
+      "headerMeanDiff": 0.7796089324618737,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414008_60.jpg",
+      "sha256": "8efbbd338aad31a4a6a96fbfb0872f19e0d6f02b9065355fbbddf8e22b725683",
+      "size": 203751,
+      "headerMeanDiff": 0.7938540305010893,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414627_20.jpg",
+      "sha256": "9b4f05b0f064826001669a4cbc65391b141b514484f1341d31abd8962b4d23a5",
+      "size": 331327,
+      "headerMeanDiff": 0.777495642701525,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414627_40.jpg",
+      "sha256": "af92043a303b8f39948f428fe902dde414f9dd29816f105fa40dfcb003bd1d91",
+      "size": 268880,
+      "headerMeanDiff": 0.7571285403050109,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414627_60.jpg",
+      "sha256": "07b571a5a543bb247988cb0b11c31620e83c26d9e5143da9dfa29dd248608e93",
+      "size": 270704,
+      "headerMeanDiff": 0.7713736383442266,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "778601_20.jpg",
+      "sha256": "9f381896a1e43c789782e87e0a9753ba1c1532672018c6c7ffafe1fad03f6bae",
+      "size": 203639,
+      "headerMeanDiff": 0.7844803921568627,
+      "footerMeanDiff": 0.38473112535612536
+    },
+    {
+      "file": "778601_40.jpg",
+      "sha256": "aae3da3e0f1f0d89ea99e5286b8525827f8aa373a1d55a20bed15474ad759101",
+      "size": 178568,
+      "headerMeanDiff": 0.7632549019607843,
+      "footerMeanDiff": 0.38473112535612536
+    },
+    {
+      "file": "778601_60.jpg",
+      "sha256": "52c63c30e683b7dce42ef8d7f09db17b501f74320ff861a67c7a2cfec95be091",
+      "size": 180510,
+      "headerMeanDiff": 0.7781056644880174,
+      "footerMeanDiff": 0.38473112535612536
+    },
+    {
+      "file": "63050_10.jpg",
+      "sha256": "0407a9843f553c24abda94e07ac848e0086961d2d10ee87ce53cd16cf7ad3f81",
+      "size": 275032,
+      "headerMeanDiff": 0.7457287581699347,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63050_20.jpg",
+      "sha256": "998e24176a4ebb3a6627972f9c561676253887e8391e0b181737e5ab233ac294",
+      "size": 293093,
+      "headerMeanDiff": 0.7953159041394335,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63078_1.jpg",
+      "sha256": "4ab2cf66762014eee1493c7cc23823b5d4a14f0b3753d1ff194fcdfd35829b15",
+      "size": 273399,
+      "headerMeanDiff": 0.7482788671023965,
+      "footerMeanDiff": 0.5298860398860399
+    },
+    {
+      "file": "63078_2.jpg",
+      "sha256": "1181b82cf8cae08ad9c4a92fbea939ddab6ad982b2ff67439bae512cd17c95e7",
+      "size": 326230,
+      "headerMeanDiff": 0.7855718954248366,
+      "footerMeanDiff": 0.5298860398860399
+    },
+    {
+      "file": "63085_10.jpg",
+      "sha256": "d1b6c26ee05a66c30f9ca98f4dc2da96617cbbbd634d33b18e750f7600b142e7",
+      "size": 368222,
+      "headerMeanDiff": 0.7750479302832244,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63085_20.jpg",
+      "sha256": "ed80c1bed83d7e9269151291e074e390f4fb815d18147ec26ed3c20a4979e858",
+      "size": 348024,
+      "headerMeanDiff": 0.824520697167756,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "414010_20.jpg",
+      "sha256": "fdfe90d7b881f514733ba030aca8c2d862887d31247158f30841c84f8687b929",
+      "size": 237680,
+      "headerMeanDiff": 0.7813681917211329,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414010_40.jpg",
+      "sha256": "966146d3dc417c2eb23194d568807c4c7e486afa9ed0ee47c228411a001ba6ec",
+      "size": 213888,
+      "headerMeanDiff": 0.7599400871459695,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414010_60.jpg",
+      "sha256": "6c5fde77228e1115da4ac41d3eef1655fdb862f94cdc4d2814fd61e06cfecb72",
+      "size": 215843,
+      "headerMeanDiff": 0.7741851851851852,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414013_20.jpg",
+      "sha256": "0715a3268e666382e40bbc2b2b34e44ead0ce6985a036a0205fc155610a87023",
+      "size": 305942,
+      "headerMeanDiff": 0.7121840958605664,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "414013_40.jpg",
+      "sha256": "f5d2e830a26ae82283686a193b921b45cff66fa14e3815e597961dc3a13ab13c",
+      "size": 247263,
+      "headerMeanDiff": 0.6910348583877995,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "414013_60.jpg",
+      "sha256": "715e096765d9e0a986a288019a0ce5e078c21aa26999fcecb012e139b399dab7",
+      "size": 249083,
+      "headerMeanDiff": 0.7053366013071896,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "414629_20.jpg",
+      "sha256": "5856b90ac827304589b5ae7d3759b0f853c3894c80fe71d6aa3cbae216d27f6d",
+      "size": 239194,
+      "headerMeanDiff": 0.7745653594771242,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414629_40.jpg",
+      "sha256": "3cf958113b8e21e44dd0eff26128722a39e428facade8e4cc372bc62be1ab1b5",
+      "size": 211394,
+      "headerMeanDiff": 0.7527385620915032,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414629_60.jpg",
+      "sha256": "0feccbadc6db6252b4f2479dd751cbccdd5a9dee0e4cad09372d32fd4c2c9c1a",
+      "size": 213308,
+      "headerMeanDiff": 0.766983660130719,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "414634_20.jpg",
+      "sha256": "d6b8de3d14bb65245d652c006bd655ec4dfe5de6c951edf14637c3ace49e279c",
+      "size": 251262,
+      "headerMeanDiff": 0.7273605664488018,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "414634_40.jpg",
+      "sha256": "67490e0cf3803d67954dfd9c5e9a0b42c720323fd0c21e4d1dbf6fc05d433ebe",
+      "size": 200959,
+      "headerMeanDiff": 0.7063311546840959,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "414634_60.jpg",
+      "sha256": "404fd05608066d347f81dbf3ba29c377b65d370edf88108b69ddeb9c9ac49740",
+      "size": 202884,
+      "headerMeanDiff": 0.7206328976034858,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "788616_10.jpg",
+      "sha256": "f9dc964cd230c58e0c6e31783f15dcb20ab9559cf1f8afecdb3df32d3b8962e3",
+      "size": 312162,
+      "headerMeanDiff": 0.7878965141612201,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "788616_20.jpg",
+      "sha256": "16d47e4ed4f255547327760a4e39c2763b13b14198336a65f61d8978ecb1ac7e",
+      "size": 325223,
+      "headerMeanDiff": 0.8337015250544663,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "788616_30.jpg",
+      "sha256": "97957412c3068650d7f44da374c028cc8e81d9c451a49b8b103757061e508607",
+      "size": 255829,
+      "headerMeanDiff": 0.8364248366013072,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "788616_40.jpg",
+      "sha256": "9a49ca81fc6cbc2c31e2bc540bb21e447d3abf236dc19b5440c316c11f96c8fe",
+      "size": 250422,
+      "headerMeanDiff": 0.8126949891067539,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "788616_60.jpg",
+      "sha256": "a730d885138e8641fe564971f219495d0fb50a729de3c38c3b4674a7a4930ed4",
+      "size": 252251,
+      "headerMeanDiff": 0.8273899782135076,
+      "footerMeanDiff": 0.44044159544159545
+    },
+    {
+      "file": "63092_10.jpg",
+      "sha256": "a74730273a20653f2c9b4f72b49e97352f7a53ff275fa0ab259548de06f223ce",
+      "size": 229646,
+      "headerMeanDiff": 0.7558202614379085,
+      "footerMeanDiff": 0.41393340455840455
+    },
+    {
+      "file": "63092_20.jpg",
+      "sha256": "65244c2c0e99924a3e6ccc7d81f4fb81f54d85d072b2077b48c8f1e53cf5f2db",
+      "size": 233208,
+      "headerMeanDiff": 0.8048257080610022,
+      "footerMeanDiff": 0.41393340455840455
+    },
+    {
+      "file": "63140_10.jpg",
+      "sha256": "8b8234c473dd97cb30a89823ef8a9d46409e2dd4dcaedd45159d7e792fb45e96",
+      "size": 243328,
+      "headerMeanDiff": 0.7619291938997821,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63140_20.jpg",
+      "sha256": "11d713f6001c0ec64dc0edbd5c4e29fe56894542311565b6457a842951fea121",
+      "size": 246499,
+      "headerMeanDiff": 0.813863834422658,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63045_3.jpg",
+      "sha256": "1c7d302641692992ab256bf1ca85305ab4ceb2f2308dd2c707a226d895f46479",
+      "size": 297314,
+      "headerMeanDiff": 0.6813159041394335,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63045_5.jpg",
+      "sha256": "33576528b551e1ff4858af6d85423ea99cb67386c2caa051e74eb1e6797a7e9a",
+      "size": 274421,
+      "headerMeanDiff": 0.701843137254902,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63045_10.jpg",
+      "sha256": "14223b8ef1435ff4cd17742cb0f00045364c8636fd4e760e761bd0ba44a0a40c",
+      "size": 307981,
+      "headerMeanDiff": 0.7326263616557734,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63045_15.jpg",
+      "sha256": "1c08fc78f6098bc0a181b8e24d0f27b9e50e503b3702c3afca63d61e31fd01e8",
+      "size": 291332,
+      "headerMeanDiff": 0.7409880174291938,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63045_20.jpg",
+      "sha256": "90dc31e7180ed8b17b2883de478b5823a3eaf2c5d1a2b379439a720ceb4467cc",
+      "size": 321256,
+      "headerMeanDiff": 0.7818812636165577,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63277_10.jpg",
+      "sha256": "4c2735421005ec63ab74b0f2dcac43497a39b64c4ab1386e14321a5bba578c58",
+      "size": 280917,
+      "headerMeanDiff": 0.7533126361655773,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63277_20.jpg",
+      "sha256": "267f5f407a85b4a286fb68479ffc5f9d9ff9c127e45417ac8a5b93ace2a82dad",
+      "size": 293243,
+      "headerMeanDiff": 0.8046710239651416,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63141_5.jpg",
+      "sha256": "fa602ae1d3719ecf8be02976d7d04a6f98f88445369f872610ec03f1de384338",
+      "size": 220047,
+      "headerMeanDiff": 0.7194814814814815,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63141_7.jpg",
+      "sha256": "c1f9d4551e665dfa1f88fae5b9fecae33818c72d2fac967bd03941e93484c13d",
+      "size": 224176,
+      "headerMeanDiff": 0.7010827886710239,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63141_10.jpg",
+      "sha256": "f087b743bb38b64d0d2b7149e038a448d9d165e773cb6f169d6aaa7cfc584b73",
+      "size": 240928,
+      "headerMeanDiff": 0.7501851851851852,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63141_15.jpg",
+      "sha256": "6cc3c2403b955f49052a7daf5ee4572a113b0730fe05dac29f404b7b4f64c584",
+      "size": 240652,
+      "headerMeanDiff": 0.7584139433551198,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63144_5.jpg",
+      "sha256": "46f0438475bb0acf109321a342250bccd6253c353b92aebb64bb3c94d8b2d86b",
+      "size": 255997,
+      "headerMeanDiff": 0.7203071895424836,
+      "footerMeanDiff": 0.42533653846153846
+    },
+    {
+      "file": "63197_6.jpg",
+      "sha256": "0420d753b644639b459adb4fca01545c37b15c1863e01e0e48c2470336f2b2e1",
+      "size": 196439,
+      "headerMeanDiff": 0.634958605664488,
+      "footerMeanDiff": 0.3534650997150997
+    },
+    {
+      "file": "63345_20.jpg",
+      "sha256": "dbccc3b07717d7510fe6f9d367b6bca878809d0b72ce49dad86965eaceacdc4c",
+      "size": 336159,
+      "headerMeanDiff": 0.7682625272331155,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "325744_10.jpg",
+      "sha256": "aff440ed6e1326d9c876f832828bd466c7ea2b436e4038023aefa387903931bd",
+      "size": 357820,
+      "headerMeanDiff": 0.7384095860566449,
+      "footerMeanDiff": 0.48112001424501427
+    },
+    {
+      "file": "63286_5.jpg",
+      "sha256": "18af07fb12696975efb706b98628ed00c72309c411972d4205cdb9c68d5d88ba",
+      "size": 213289,
+      "headerMeanDiff": 0.6282483660130719,
+      "footerMeanDiff": 0.3534650997150997
+    },
+    {
+      "file": "63286_10.jpg",
+      "sha256": "9bdc34512b9cd075a3420ff1201cbc9128202658404ee17118ad88db11c7bed2",
+      "size": 243691,
+      "headerMeanDiff": 0.6742156862745098,
+      "footerMeanDiff": 0.3534650997150997
+    },
+    {
+      "file": "63286_15.jpg",
+      "sha256": "ac361cbf9fdbf5be4537030ae11088644a18fe30a03356bf5f26bd4de26834e9",
+      "size": 222193,
+      "headerMeanDiff": 0.6810871459694989,
+      "footerMeanDiff": 0.3534650997150997
+    },
+    {
+      "file": "63286_20.jpg",
+      "sha256": "f7a5c2588ba5bc3a98caf673e30ddd6773caaf33ff59a7062e3c390b8928118d",
+      "size": 239419,
+      "headerMeanDiff": 0.7276307189542484,
+      "footerMeanDiff": 0.3534650997150997
+    },
+    {
+      "file": "63286_30.jpg",
+      "sha256": "95e89d6fd33e05f0c48ad00f70b739fc47001fede03572308284b254d70b4cc3",
+      "size": 214030,
+      "headerMeanDiff": 0.7236666666666667,
+      "footerMeanDiff": 0.3534650997150997
+    },
+    {
+      "file": "317073_20.jpg",
+      "sha256": "2181374c9f10047be6431e486ccb7ad4e13bc6ce19cfe001853b825dc3aaa0da",
+      "size": 295313,
+      "headerMeanDiff": 0.7315925925925926,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "317073_40.jpg",
+      "sha256": "73fa8c8bdf2e2b1903a314fe12618862e1844c7846c15cef9c7fb6b8d095345b",
+      "size": 233563,
+      "headerMeanDiff": 0.7106688453159041,
+      "footerMeanDiff": 0.3244337606837607
+    },
+    {
+      "file": "778746_18.jpg",
+      "sha256": "699c08f460c1749e04ea601221d34e2e95d338e50bb065b4e6562543bf9655c8",
+      "size": 237840,
+      "headerMeanDiff": 0.828582788671024,
+      "footerMeanDiff": 0.47420584045584047
+    },
+    {
+      "file": "778746_36.jpg",
+      "sha256": "d812015e5f8c9a1925456aac01a06e32f6771f961ff301bac5f4dab890b95592",
+      "size": 220129,
+      "headerMeanDiff": 0.8666808278867102,
+      "footerMeanDiff": 0.47420584045584047
+    },
+    {
+      "file": "63143_4.jpg",
+      "sha256": "62c183e9b841a858264d47a3a0db46390333ef3365ceb29ec189fc18a3edede5",
+      "size": 280416,
+      "headerMeanDiff": 0.6932527233115469,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63143_8.jpg",
+      "sha256": "d4494d3e59653a3376750c831572eb9e19bee6e9bfbb63bda05eef5188fdd1c2",
+      "size": 276474,
+      "headerMeanDiff": 0.7299368191721133,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63143_12.jpg",
+      "sha256": "04746b83325c9f47c2bee27b392415ca654ad9ba98485b02fd796fb1a3eca37f",
+      "size": 292002,
+      "headerMeanDiff": 0.7593355119825708,
+      "footerMeanDiff": 0.4075373931623932
+    },
+    {
+      "file": "63450_20.jpg",
+      "sha256": "d38d29e3c05fb5f5feaf6837358de7d61054f88b1c4bc3eedc4d1a8c6b3b671a",
+      "size": 308736,
+      "headerMeanDiff": 0.7751002178649238,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "63450_40.jpg",
+      "sha256": "e67d8ff64f07bffa04c07453e33f0b2d3b601ec1b622c63145abb50d97a26ade",
+      "size": 239239,
+      "headerMeanDiff": 0.7547015250544662,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "63450_60.jpg",
+      "sha256": "eac86e4534f8e826b95e4da4938e600d547db1cf29cc783d3b07849051e2cc17",
+      "size": 241128,
+      "headerMeanDiff": 0.7689466230936819,
+      "footerMeanDiff": 0.40659900284900286
+    },
+    {
+      "file": "63493_10.jpg",
+      "sha256": "f9c0e1d3df83787fa2ed6caba515bfef6cc5a145626e4f1a82a23f72a9740d0c",
+      "size": 293577,
+      "headerMeanDiff": 0.7370915032679739,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63493_20.jpg",
+      "sha256": "b5f5b8a5897e65820bb817ff4673c28bcf23439169f795b997067a082ea9d458",
+      "size": 289533,
+      "headerMeanDiff": 0.7865729847494554,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63524_5.jpg",
+      "sha256": "cebefff8931e1f91a6b6f371eefc53d47c399cfeeb814aa7e63ca0dc167f5488",
+      "size": 250460,
+      "headerMeanDiff": 0.7100261437908497,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63524_10.jpg",
+      "sha256": "934daf07856f7e4fa25b64b765d156496240ddac0577da1cda5b7d0cf982eae0",
+      "size": 238419,
+      "headerMeanDiff": 0.7433453159041394,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63524_15.jpg",
+      "sha256": "4eac59860a1e6e7241d4e590f103b09fa73087b5da2a7c7d3900de98cb63f736",
+      "size": 224639,
+      "headerMeanDiff": 0.7499183006535948,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63489_10.jpg",
+      "sha256": "4546294b4324717199f9c373360bea37e3db3e67134c97eab55081311c15fab9",
+      "size": 330305,
+      "headerMeanDiff": 0.7454673202614379,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63489_20.jpg",
+      "sha256": "b26d2077f2fc60534a57fd853572788f961da5af7eb097b0ac3b03fea7a4afb1",
+      "size": 321445,
+      "headerMeanDiff": 0.7964193899782135,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63496_10.jpg",
+      "sha256": "7bbd6bdeebb4b9caf8d9d4d0a524a8f32437d981b66474ef0912b583b1d0628b",
+      "size": 240126,
+      "headerMeanDiff": 0.745223311546841,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63496_20.jpg",
+      "sha256": "5421739f375196cdbb69952615a8d6e1607800bbf8c39b57e9e11cbca566a45e",
+      "size": 243524,
+      "headerMeanDiff": 0.794760348583878,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63491_10.jpg",
+      "sha256": "0c538443c68e035297146d6350f89a8d7edb1c26af67bca7e27f6ab78046834e",
+      "size": 368919,
+      "headerMeanDiff": 0.7597483660130719,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63491_20.jpg",
+      "sha256": "bc4b2406c3fe77ca9ae669900b683a47f66e76beb6a14296d770eee69e992baa",
+      "size": 361205,
+      "headerMeanDiff": 0.8082004357298475,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63492_10.jpg",
+      "sha256": "22f9d5376a8334e47cae18fe017b5ea931acb49b3f56f6776f8cacd4f7e93646",
+      "size": 338737,
+      "headerMeanDiff": 0.7498790849673203,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63492_20.jpg",
+      "sha256": "0af21af05d173c66b8c1cfa153bb2057134b65394ca40f68b1ff98d0237d5dbd",
+      "size": 332901,
+      "headerMeanDiff": 0.7986013071895425,
+      "footerMeanDiff": 0.43576745014245016
+    },
+    {
+      "file": "63528_5.jpg",
+      "sha256": "30729b99c3c1646a2bdea0ca46d904721f3f89d864dc0445f127de23c2a6a1c7",
+      "size": 277229,
+      "headerMeanDiff": 0.7017549019607843,
+      "footerMeanDiff": 0.398511396011396
+    },
+    {
+      "file": "788219_3.jpg",
+      "sha256": "d9f9dbfc9aa4184df41164471fcb26be5aa9b867951e2e32dd6f092ad61bcea1",
+      "size": 341796,
+      "headerMeanDiff": 0.7789117647058823,
+      "footerMeanDiff": 0.5186396011396012
+    },
+    {
+      "file": "788219_5.jpg",
+      "sha256": "91ba0c2dccaa52cc09c7d04b7f43318f2e1127deffb1c4564be5a14fd4a77567",
+      "size": 304574,
+      "headerMeanDiff": 0.7941623093681918,
+      "footerMeanDiff": 0.5186396011396012
+    },
+    {
+      "file": "788219_10.jpg",
+      "sha256": "b58ea2e4e92a3bedc2a8a6179ea32a2e77c3f938aa9e54eac7e28b81a0c14f55",
+      "size": 365027,
+      "headerMeanDiff": 0.8201960784313725,
+      "footerMeanDiff": 0.5186396011396012
+    },
+    {
+      "file": "788219_15.jpg",
+      "sha256": "5a7aff8b2dd9256aab89e6b8478adca5df1d072dd47033867a26a97fc4807f1e",
+      "size": 308238,
+      "headerMeanDiff": 0.8282864923747276,
+      "footerMeanDiff": 0.5186396011396012
+    },
+    {
+      "file": "788219_20.jpg",
+      "sha256": "879bf9d640da69cb02f10a9cb6b100a103b514ebd67bde551290073d73231607",
+      "size": 335034,
+      "headerMeanDiff": 0.865735294117647,
+      "footerMeanDiff": 0.5186396011396012
+    }
+  ]
+}
