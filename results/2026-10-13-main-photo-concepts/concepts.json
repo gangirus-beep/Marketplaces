@@ -1,0 +1,42 @@
+[
+  {
+    "file": "46728_20_single.jpg",
+    "id": "46728",
+    "qty": 20,
+    "mode": "single",
+    "layers": 1,
+    "frontHeight": 324,
+    "totalSpread": 0,
+    "captionBottom": 708
+  },
+  {
+    "file": "46728_20_compact-stack.jpg",
+    "id": "46728",
+    "qty": 20,
+    "mode": "compact-stack",
+    "layers": 7,
+    "frontHeight": 306,
+    "totalSpread": 24,
+    "captionBottom": 708
+  },
+  {
+    "file": "788616_60_single.jpg",
+    "id": "788616",
+    "qty": 60,
+    "mode": "single",
+    "layers": 1,
+    "frontHeight": 324,
+    "totalSpread": 0,
+    "captionBottom": 708
+  },
+  {
+    "file": "788616_60_compact-stack.jpg",
+    "id": "788616",
+    "qty": 60,
+    "mode": "compact-stack",
+    "layers": 7,
+    "frontHeight": 306,
+    "totalSpread": 24,
+    "captionBottom": 708
+  }
+]
