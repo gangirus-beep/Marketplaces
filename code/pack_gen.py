@@ -12,7 +12,7 @@ for p in root.rglob('*'):
  rel=p.relative_to(root)
  if len(rel.parts)>1:
   if rel.parts[0] not in {'fonts','pass','pilot','stage'}:continue
- elif not(p.name=='axis.py' or p.name.startswith('catalog_') or p.name in {'README.md','cover.html','pack_gen.py','samson_download.py'}):continue
+ elif not(p.name=='axis.py' or p.name.startswith('catalog_') or p.name in {'README.md','cover.html','pack_gen.py','samson_download.py','media_rules.md'}):continue
  files.append(p)
 files.sort();buf=io.BytesIO()
 with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
@@ -20,6 +20,7 @@ with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
 raw=buf.getvalue();sha=hashlib.sha256(raw).hexdigest();b64=base64.b64encode(raw).decode()
 wb=openpyxl.Workbook();ws=wb.active;ws.title='Как пользоваться';ws.column_dimensions['A'].width=150
 code="import base64,io,zipfile,openpyxl\nfrom pathlib import Path\nsource=Path('Генератор_обложек_WB_v18.xlsx')\nwork=Path('work/gen')\nwb=openpyxl.load_workbook(source,read_only=True)\ndata=''.join(r[1] for r in wb['Файлы'].iter_rows(min_row=2,values_only=True) if r[1])\nzipfile.ZipFile(io.BytesIO(base64.b64decode(data))).extractall(work)\n# Read work/gen/README.md before running scripts."
+code=code.replace('Генератор_обложек_WB_v18.xlsx',out.name)
 rows=[version,'Распакованные скрипты, шаблон и шрифты. Действующие правила — в README.md и stage/assorti_rules.md.','Фото Самсона: последовательная загрузка, пауза >=2 секунд, общий кэш и остановка при 429.','Состав: '+', '.join(str(p.relative_to(root)) for p in files),'Контрольная сумма ZIP (SHA256): '+sha,'Код распаковки:',code]
 for i,t in enumerate(rows,1):
  c=ws.cell(i,1,t);c.font=Font(name='Courier New' if i==7 else 'Arial',bold=i==1);c.alignment=Alignment(wrap_text=True,vertical='top')

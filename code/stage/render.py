@@ -18,20 +18,31 @@ with sync_playwright() as p:
     if os.environ.get('WB_CHROMIUM'): launch_kw['executable_path']=os.environ['WB_CHROMIUM']
     b=p.chromium.launch(**launch_kw)
     pg=b.new_page(viewport={'width':900,'height':1200})
-    pg.goto('file://'+os.path.abspath('cover.html'))
+    pg.goto(os.environ.get('WB_COVER_URL','file://'+os.path.abspath('cover.html')))
+    from pathlib import Path
+    helper=Path(__file__).resolve().with_name('render_assorti.js')
+    if not helper.exists(): helper=Path('stage/render_assorti.js')
+    pg.add_script_tag(content=helper.read_text())
     for n,x in enumerate(goods):
         if only and x['code'] not in only: continue
         t=texts.T[x['code']]; m=meta[x['code']]; tone=texts.TONE_FORCE.get(x['code'],m['tone'])
         single=all(c['quant']==1 for c in x['cards']); ax=AX(f"cut/{x['code']}.png")
         for c in x['cards']:
             name=f"{c['idvh']}_{c['quant']}.jpg"; q=c['quant']
-            d=dict(qty=q,forms=t['forms'],heading=t['heading'],sub=NB(t['sub']),chips=[NB(v) for v in t['chips']],bg=t.get('bg',getattr(texts,'BG','plain')),tone=tone,accent=t.get('accent',ACC),font=t.get('font',FONT),img=f"cut/{x['code']}.png",ratio=m['ratio'],line2=t.get('line2_1','') if q==1 else t.get('line2',('в комплекте' if x['unit'] in ('набор','упаковка') else 'в наборе')),plaque=not single)
+            d=dict(qty=q,forms=t['forms'],heading=t['heading'],sub=NB(t['sub']),chips=[NB(v) for v in t['chips']],bg=t.get('bg',getattr(texts,'BG','plain')),tone=tone,accent=t.get('accent',ACC),font=t.get('font',FONT),img=f"cut/{x['code']}.png",ratio=m['ratio'],line2=t.get('line2_1','') if q==1 else t.get('line2',('в комплекте' if x['unit'] in ('набор','упаковка') else 'в наборе')),plaque=True)
             d.update(ax)
             if t.get('copies'): d['copies']=t['copies']
             if t.get('cord') and q>=4: d['compactCord']=True
-            r=pg.evaluate('d=>render(d)',d)
+            d['copies']=1; d.pop('layout',None)
+            d['assorti']=x.get('assorti')=='ассорти'
+            if d['assorti']:
+                if not m.get('main_img') or not m.get('main_ratio') or not m.get('variants'):
+                    raise ValueError('Prepare one real main variant and verified variants in cutmeta for '+x['code'])
+                d.update(img=m['main_img'],ratio=m['main_ratio'],variants=m['variants'],variantMode=m.get('variant_mode','full'))
+                if m.get('variant_title'): d['variantTitle']=m['variant_title']
+            r=pg.evaluate('d=>renderAssorti(d)',d)
             pg.screenshot(path='out/covers/'+name,type='jpeg',quality=92,clip={'x':0,'y':0,'width':900,'height':1200})
-            log.append(dict(file=name,code=x['code'],quant=q,tone=tone,bg=t['bg'],plaque=not single,**r))
+            log.append(dict(file=name,code=x['code'],quant=q,tone=tone,bg=t['bg'],plaque=True,**r))
         if n%20==0: print(n,len(log),round(time.time()-t0),flush=True)
     b.close()
 if not only: json.dump(log,open('coverlog.json','w'),ensure_ascii=False,indent=1)

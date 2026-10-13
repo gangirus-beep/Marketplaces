@@ -187,7 +187,7 @@ async function render(d){
   const $=id=>document.getElementById(id), q=d.qty, f=d.forms.split('|'), n10=q%10, n100=q%100;
   const unit=(n10===1&&n100!==11)?f[0]:(n10>=2&&n10<=4&&(n100<12||n100>14))?f[1]:f[2];
   const root=$('root'), b=BG[d.bg]||BG.plain; root.style.background=b.css; $('deco').innerHTML=b.deco||'';
-  $('plaque').style.background=d.accent; $('plaque').style.display=d.plaque===false?'none':'flex'; $('num').textContent=q; $('unit').textContent=unit;
+  $('plaque').style.background=d.accent; $('plaque').style.display='flex'; $('num').textContent=q; $('unit').textContent=unit;
   $('line2').textContent=d.line2||''; $('line2').style.display=d.line2?'block':'none';
   let ft=FONT[d.font]; const fit=o=>Math.min(o.max,Math.floor(776/(Math.max(8,d.heading.length)*o.k)));
   if(fit(ft)<56) ft=FONT.compact; const size=Math.max(44,fit(ft));
@@ -201,36 +201,13 @@ async function render(d){
   zone.style.cssText='position:relative;flex:1 1 0;min-height:0'+(panel?';border-radius:28px;overflow:hidden;background:linear-gradient(155deg,'+d.accent+' 0%,'+shade(d.accent,0.62)+' 100%)':(white?';border-radius:28px;background:#FFFFFF':''));
   await document.fonts.ready;
   const zr=zone.getBoundingClientRect(), P=panel?28:0, W=zr.width-2*P, H=zr.height-2*P, R=d.ratio, sr=panel?18:26;
-  if(d.layout==='grid'){
-    const k=d.displayQty||q, gap=16; let best=null;
-    for(let rows=1;rows<=k;rows++){let cols=Math.ceil(k/rows),ww=Math.min((W-(cols-1)*gap)/cols,R*(H-(rows-1)*gap)/rows),hh=ww/R,score=ww*hh;if(!best||score>best.score)best={rows,cols,w:Math.floor(ww),h:Math.floor(hh),score};}
-    const ps=[];let y=P+Math.round((H-(best.rows*best.h+(best.rows-1)*gap))/2),remaining=k;
-    for(let r=0;r<best.rows;r++){let n=Math.min(best.cols,remaining),x=P+Math.round((W-(n*best.w+(n-1)*gap))/2);for(let j=0;j<n;j++){let im=new Image();im.src=d.img;im.style.cssText='left:'+(x+j*(best.w+gap))+'px;top:'+y+'px;width:'+best.w+'px;height:'+best.h+'px;object-fit:contain';zone.appendChild(im);ps.push(im.decode());}remaining-=n;y+=best.h+gap;}
-    await Promise.all(ps);return {mode:'grid',copies:k,w:best.w,h:best.h,subsize:ss,subw:$('sub').scrollWidth,chipsH:Math.round($('chips').getBoundingClientRect().height),zoneH:Math.round(zr.height),hsize:hs,font:ft===FONT.compact?'compact':d.font,hw:Math.round($('h').getBoundingClientRect().width),overflow:root.scrollHeight>1200};
-  }
-  const k=d.copies?d.copies:Math.max(1,Math.min(40,q)); let sx=0,sy=0,dx=0,dy=0,w,h,mode='diag',pvx=0,pvy=0,pdim=false;
-  if(k===1){ w=Math.floor(Math.min(W,(H-sr)*R)); h=Math.round(w/R); }
-  else if(d.compactCord){ mode='cord-stack'; sx=Math.min(30*(k-1),210); sy=Math.min(12*(k-1),96); dx=sx/(k-1); dy=sy/(k-1); w=Math.floor(Math.min(W-sx,(H-sr-sy)*R)); h=Math.round(w/R); }
-  else if((d.elong||0)>2.2){ mode='perp'; const th=(d.axis||0)*Math.PI/180; let nx=-Math.sin(th), ny=Math.cos(th); if(Math.abs(nx)>Math.cos(22*Math.PI/180)){nx=1;ny=0;} else if(Math.abs(ny)>Math.cos(22*Math.PI/180)){nx=0;ny=-1;} if(ny>0||(Math.abs(ny)<0.2&&nx<0)){nx=-nx;ny=-ny;}
-    const Hs=H-sr, sF=T=>Math.min(W/(R+Math.abs(nx)*T),Hs/(1+Math.abs(ny)*T)), s1=sF(0), T0=1.12*(d.thick||0.2)*(k-1); let T=T0;
-    if(sF(T0)<0.6*s1){ let lo=0,hi=T0; for(let j=0;j<30;j++){ const m=(lo+hi)/2; if(sF(m)>=0.6*s1) lo=m; else hi=m; } T=lo; }
-    const sc0=sF(T); h=Math.round(sc0); w=Math.round(sc0*R); pvx=nx*T*sc0/(k-1); pvy=ny*T*sc0/(k-1); sx=Math.abs(pvx)*(k-1); sy=Math.abs(pvy)*(k-1); pdim=(T<T0*0.99); }
-  else if(R<0.5){ mode='row'; h=Math.round(H-sr); w=Math.round(h*R); if(w*k*1.06>W && k<=6){ w=Math.floor(W/(k*1.06)); h=Math.round(w/R); } dx=Math.min(w*1.06,(W-w)/(k-1)); sx=dx*(k-1); }
-  else if(R>2.2){ mode='col'; h=Math.min(W/R,(H-sr)/(1+(k-1)*0.55)); w=Math.round(h*R); h=Math.round(h); dy=Math.min(h*1.08,(H-sr-h)/(k-1)); sy=dy*(k-1); }
-  else if(R>1.55){ mode='vert'; sx=Math.min(22*(k-1),120); dx=sx/(k-1); const spread=Math.min(0.18*(k-1),0.9); h=Math.min((H-sr)/(1+spread),(W-sx)/R); w=Math.round(h*R); h=Math.round(h); sy=Math.min(spread*h,H-sr-h); dy=sy/(k-1); }
-  else { sx=Math.min(44*(k-1),110+6.5*k,330); dx=sx/(k-1); dy=dx*0.45; sy=dy*(k-1); w=Math.floor(Math.min(W-sx,(H-sr-sy)*R)); h=Math.round(w/R); }
-  const x0=P+Math.round((W-(w+sx))/2), y0=P+Math.max(0,Math.round((H-sr-(h+sy))/2)), sc=panel?'0,0,0':'30,25,20';
-  const ps=[];
-  for(let i=0;i<k;i++){
-    const br=(k===1||mode==='row'||(mode==='perp'&&!pdim))?1:(0.84+0.16*i/(k-1));
-    const sh=(i===k-1||mode==='row'||(mode==='perp'&&!pdim))?' drop-shadow(0 16px 20px rgba('+sc+','+(panel?'0.45':'0.30')+'))':' drop-shadow(0 2px 3px rgba('+sc+',0.26))';
-    const im=new Image(); im.src=d.img;
-    let px=Math.round(mode==='row'?x0+i*dx:x0+(k-1-i)*dx), py=Math.round(y0+i*dy);
-    if(mode==='perp'){ const fx=x0+(pvx<0?sx:0), fy=y0+(pvy<0?sy:0); px=Math.round(fx+pvx*(k-1-i)); py=Math.round(fy+pvy*(k-1-i)); }
-    im.style.cssText='top:'+py+'px;left:'+px+'px;width:'+w+'px;height:'+h+'px;filter:brightness('+br.toFixed(2)+')'+sh;
-    zone.appendChild(im); ps.push(im.decode().catch(()=>{}));
-  }
-  await Promise.all(ps);
-  return {subsize:ss,subw:$('sub').scrollWidth,chipsH:Math.round($('chips').getBoundingClientRect().height),zoneH:Math.round(zr.height),w:w,h:h,mode:mode,hsize:hs,font:ft===FONT.compact?'compact':d.font,size:size,hw:Math.round($('h').getBoundingClientRect().width),overflow:root.scrollHeight>1200};
+  // 13.10.2026: one supplier unit on every cover; sold quantity is in the plaque.
+  const w=Math.floor(Math.min(W,(H-sr)*R)),h=Math.round(w/R),mode='single';
+  const x0=P+Math.round((W-w)/2),y0=P+Math.max(0,Math.round((H-sr-h)/2));
+  const im=new Image();im.src=d.img;
+  const sc=panel?'0,0,0':'30,25,20';
+  im.style.cssText='top:'+y0+'px;left:'+x0+'px;width:'+w+'px;height:'+h+'px;filter:drop-shadow(0 16px 20px rgba('+sc+','+(panel?'0.45':'0.30')+'))';
+  zone.appendChild(im);await im.decode();
+  return {copies:1,shownSupplierUnits:1,subsize:ss,subw:$('sub').scrollWidth,chipsH:Math.round($('chips').getBoundingClientRect().height),zoneH:Math.round(zr.height),w:w,h:h,mode:mode,hsize:hs,font:ft===FONT.compact?'compact':d.font,size:size,hw:Math.round($('h').getBoundingClientRect().width),overflow:root.scrollHeight>1200};
 }
 </script></body></html>

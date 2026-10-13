@@ -18,12 +18,13 @@ with sync_playwright() as p:
             if only and name not in only and x['code'] not in only: continue
             q=c['quant']
             line2='' if q==1 else ('в комплекте' if x['unit']=='набор' else 'в наборе')
-            d=dict(qty=q,forms=t['forms'],heading=t['heading'],sub=t['sub'],chips=t['chips'],bg='paper',tone=tone,accent='#6A3DB8',font='serif',img=f"cut/{x['code']}.png",ratio=m['ratio'],line2=line2,plaque=not single)
+            d=dict(qty=q,forms=t['forms'],heading=t['heading'],sub=t['sub'],chips=t['chips'],bg='paper',tone=tone,accent='#6A3DB8',font='serif',img=f"cut/{x['code']}.png",ratio=m['ratio'],line2=line2,plaque=True)
             d.update(AX(d['img']))            # ось вытянутости — для смещения стопки
             if t.get('copies'): d['copies']=t['copies']   # коллаж дизайнов — одна копия
+            d['copies']=1; d.pop('layout',None)
             r=pg.evaluate('d=>render(d)',d)
             pg.screenshot(path='out/covers/'+name,type='jpeg',quality=92,clip={'x':0,'y':0,'width':900,'height':1200})
-            log.append(dict(file=name,code=x['code'],quant=q,tone=tone,plaque=not single,**r))
+            log.append(dict(file=name,code=x['code'],quant=q,tone=tone,plaque=True,**r))
     b.close()
 json.dump(log,open('coverlog.json','w'),ensure_ascii=False,indent=1)
 print(len(log),'covers; overflow:',[l['file'] for l in log if l['overflow']],'; wide heading:',[(l['file'],l['hw']) for l in log if l['hw']>788])
