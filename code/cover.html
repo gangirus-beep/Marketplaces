@@ -1,0 +1,236 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Manrope';src:url('fonts/Manrope.ttf');font-weight:200 800}
+@font-face{font-family:'Unbounded';src:url('fonts/Unbounded.ttf');font-weight:200 900}
+@font-face{font-family:'Montserrat';src:url('fonts/Montserrat.ttf');font-weight:100 900}
+@font-face{font-family:'Marck Script';src:url('fonts/MarckScript.ttf')}
+@font-face{font-family:'Bad Script';src:url('fonts/BadScript.ttf')}
+@font-face{font-family:'Caveat';src:url('fonts/Caveat.ttf');font-weight:400 700}
+@font-face{font-family:'Oswald';src:url('fonts/Oswald.ttf');font-weight:200 700}
+@font-face{font-family:'Cormorant Garamond';src:url('fonts/Cormorant.ttf');font-weight:300 700}
+html,body{margin:0;background:#fff}
+#root{width:900px;height:1200px;box-sizing:border-box;padding:52px 56px 48px;display:flex;flex-direction:column;gap:22px;overflow:hidden;font-family:'Manrope',sans-serif;color:#1E1C1A;position:relative}
+#deco{position:absolute;left:0;top:0;width:900px;height:1200px;z-index:0;overflow:hidden;pointer-events:none}
+#root>*:not(#deco){position:relative;z-index:1}
+#plaque{align-self:flex-start;display:flex;align-items:center;gap:24px;border-radius:28px;padding:20px 36px 24px 30px;color:#fff;box-shadow:0 12px 26px rgba(0,0,0,.22)}
+#num{font-family:'Unbounded',sans-serif;font-weight:800;font-size:144px;line-height:.82;letter-spacing:-.04em}
+#unit{font-family:'Montserrat',sans-serif;font-weight:800;font-size:40px;line-height:1;text-transform:uppercase;letter-spacing:0}
+#line2{font-size:28px;font-weight:700;line-height:1.1}
+#h{margin:0;white-space:nowrap}
+#sub{font-size:30px;font-weight:600;color:#3A3632}
+#zone{position:relative;flex:1 1 0;min-height:0}
+#zone img{position:absolute}
+#chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.chip{display:flex;gap:14px;align-items:center;background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.chip div{font-size:22px;font-weight:600;line-height:1.2}
+.chip svg{flex-shrink:0}
+</style></head><body>
+<div id="root">
+ <div id="deco"></div>
+ <div id="plaque"><div id="num"></div><div style="display:flex;flex-direction:column;gap:5px"><div id="unit"></div><div id="line2"></div></div></div>
+ <div style="display:flex;flex-direction:column;gap:6px"><h1 id="h"></h1><div id="sub"></div></div>
+ <div id="zone"></div>
+ <div id="chips"></div>
+</div>
+<script>
+const svg=(w,h,body)=>'url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">'+body+'</svg>')+'")';
+const INK='rgba(52,102,176,', RED='rgba(214,69,65,0.32)';
+function hatchSvg(){ // цветная штриховка по углам
+  const cl=[[700,40,'#F08A24'],[-30,330,'#2FA36B'],[640,560,'#2F6FD6'],[-20,840,'#E0559A'],[600,1010,'#E9B81E']]; let b='';
+  cl.forEach((c,ci)=>{ for(let i=0;i<24;i++){ const j=((i*37+ci*11)%9)-4, x=c[0]+i*12, y=c[1]+j*3, len=150+((i*53+ci*7)%60);
+    b+='<line x1="'+x+'" y1="'+(y+len)+'" x2="'+(x+len*0.52)+'" y2="'+y+'" stroke="'+c[2]+'" stroke-width="5" stroke-linecap="round" opacity="0.20"/>'; } });
+  return svg(900,1200,b); }
+const STROKES=svg(900,1200,[['M610 80 Q760 30 940 96','#F08A24'],['M-40 400 Q110 350 270 412','#1FA7A0'],['M690 650 Q820 600 950 660','#7A4FD0'],['M-30 905 Q150 850 330 915','#E0559A'],['M560 1140 Q740 1090 950 1150','#E9B81E']].map(p=>'<path d="'+p[0]+'" fill="none" stroke="'+p[1]+'" stroke-width="104" stroke-linecap="round" opacity="0.17"/><path d="'+p[0]+'" fill="none" stroke="'+p[1]+'" stroke-width="60" stroke-linecap="round" opacity="0.10" transform="translate(14,-10)"/>').join(''));
+const SKETCH=svg(900,1200,'<g fill="none" stroke="#3C3E46" stroke-linecap="round" opacity="0.10" stroke-width="2.2"><circle cx="700" cy="250" r="190"/><ellipse cx="700" cy="250" rx="190" ry="62"/><path d="M510 250h380M700 60v380"/><path d="M-20 1010 L330 760 L560 1010 Z"/><path d="M330 760v250M60 1090l520 -30"/><path d="M40 620 q120 -70 240 0 t240 0"/></g>');
+const WAVES=svg(300,92,'<path d="M0 46 C25 6 50 6 75 46 S125 86 150 46 S200 6 225 46 S275 86 300 46" fill="none" stroke="#2444B8" stroke-width="2.6" stroke-linecap="round" opacity="0.14"/>');
+const HOLES=svg(56,60,'<circle cx="27" cy="30" r="9" fill="rgba(40,45,60,0.20)"/><circle cx="27" cy="30" r="9" fill="none" stroke="rgba(40,45,60,0.16)" stroke-width="1.5"/>');
+const SPIRAL=svg(48,44,'<ellipse cx="24" cy="26" rx="7" ry="8" fill="rgba(40,45,60,0.20)"/><path d="M24 30 C12 30 12 2 24 2 S36 20 30 26" fill="none" stroke="rgba(60,65,80,0.34)" stroke-width="3" stroke-linecap="round"/>');
+const PUNCH=svg(900,1200,'<g fill="rgba(40,45,55,0.24)" stroke="rgba(40,45,55,0.18)" stroke-width="2"><circle cx="29" cy="470" r="13"/><circle cx="29" cy="730" r="13"/></g>');
+const KRAFT=svg(300,300,'<filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.36  0 0 0 0 0.26  0 0 0 0 0.12  0 0 0 0.42 0"/></filter><rect width="300" height="300" filter="url(#n)"/>');
+const PLATE=svg(64,64,'<g fill="rgba(255,255,255,0.55)" stroke="rgba(60,65,75,0.20)" stroke-width="1.2"><rect x="6" y="12" width="26" height="8" rx="4" transform="rotate(45 19 16)"/><rect x="38" y="44" width="26" height="8" rx="4" transform="rotate(-45 51 48)"/></g>');
+const BG={
+ lined:{name:'линейка',css:'repeating-linear-gradient(180deg, transparent 0 44px, '+INK+'0.18) 44px 46px), #F7F5EF'},
+ grid:{name:'клетка',css:'repeating-linear-gradient(0deg, '+INK+'0.16) 0 1.5px, transparent 1.5px 30px), repeating-linear-gradient(90deg, '+INK+'0.16) 0 1.5px, transparent 1.5px 30px), #F7F5EF'},
+ oblique:{name:'косая линейка',css:'repeating-linear-gradient(115deg, transparent 0 96px, '+INK+'0.13) 96px 98px), repeating-linear-gradient(180deg, transparent 0 22px, '+INK+'0.18) 22px 24px, transparent 24px 46px, '+INK+'0.18) 46px 48px, transparent 48px 84px), #F7F5EF'},
+ legal:{name:'жёлтый лист',css:'repeating-linear-gradient(180deg, transparent 0 44px, '+INK+'0.20) 44px 46px), #FBF3CF'},
+ rings:{name:'лист на кольцах',css:HOLES+' 0 0/56px 60px repeat-y, repeating-linear-gradient(0deg, '+INK+'0.15) 0 1.5px, transparent 1.5px 30px), repeating-linear-gradient(90deg, '+INK+'0.15) 0 1.5px, transparent 1.5px 30px), #F7F5EF'},
+ dots:{name:'точки',css:'radial-gradient(circle, rgba(60,70,90,0.30) 0 1.7px, transparent 2.3px) 0 0/30px 30px, #F6F3EC'},
+ spiral:{name:'спираль сверху',css:SPIRAL+' 0 4px/48px 44px repeat-x, #F4F1EA'},
+ sketch:{name:'эскиз',css:SKETCH+' 0 0/900px 1200px no-repeat, #F5F2EA'},
+ waves:{name:'проба пера',css:WAVES+' 0 0/300px 92px, #F7F5F0'},
+ form:{name:'бланк',css:'linear-gradient(#F7F5F0 0 56px, transparent 56px) 0 0/100% 58px, repeating-linear-gradient(90deg, rgba(36,68,184,0.30) 0 7px, transparent 7px 14px), #F7F5F0'},
+ hatch:{name:'цветная штриховка',css:hatchSvg()+' 0 0/900px 1200px no-repeat, #F6F3EC'},
+ graphite:{name:'графитная штриховка',css:'repeating-linear-gradient(58deg, rgba(60,62,70,0.085) 0 1.4px, transparent 1.4px 8px), repeating-linear-gradient(-32deg, rgba(60,62,70,0.05) 0 1.2px, transparent 1.2px 11px), #F1EFEA'},
+ strokes:{name:'мазки кисти',css:STROKES+' 0 0/900px 1200px no-repeat, #F5F1EA'},
+ paper:{name:'акварель',css:'radial-gradient(520px 420px at 6% 2%, rgba(255,170,90,0.30), transparent 70%), radial-gradient(560px 460px at 100% 32%, rgba(110,200,160,0.26), transparent 70%), radial-gradient(620px 480px at 4% 74%, rgba(130,150,240,0.24), transparent 70%), radial-gradient(520px 420px at 96% 100%, rgba(240,120,170,0.24), transparent 70%), #F4EFE7'},
+ punched:{name:'лист с отверстиями',css:PUNCH+' 0 0/900px 1200px no-repeat, repeating-linear-gradient(180deg, transparent 0 44px, rgba(60,70,90,0.09) 44px 46px), #F2F3F5'},
+ ledger:{name:'таблица',css:'repeating-linear-gradient(90deg, rgba(40,120,90,0.20) 0 2px, transparent 2px 150px) 55px 0, repeating-linear-gradient(180deg, rgba(40,120,90,0.13) 0 1.5px, transparent 1.5px 46px), #EEF3EE'},
+ kraft:{name:'крафт-картон',css:KRAFT+' 0 0/300px 300px, #DCC8A6'},
+ mm:{name:'миллиметровка',css:'repeating-linear-gradient(0deg, rgba(205,120,50,0.26) 0 1.5px, transparent 1.5px 60px), repeating-linear-gradient(90deg, rgba(205,120,50,0.26) 0 1.5px, transparent 1.5px 60px), repeating-linear-gradient(0deg, rgba(205,120,50,0.11) 0 1px, transparent 1px 12px), repeating-linear-gradient(90deg, rgba(205,120,50,0.11) 0 1px, transparent 1px 12px), #F5F0E4'},
+ blueprint:{name:'голубая сетка',css:'repeating-linear-gradient(0deg, rgba(40,90,170,0.24) 0 1.5px, transparent 1.5px 60px), repeating-linear-gradient(90deg, rgba(40,90,170,0.24) 0 1.5px, transparent 1.5px 60px), repeating-linear-gradient(0deg, rgba(40,90,170,0.10) 0 1px, transparent 1px 12px), repeating-linear-gradient(90deg, rgba(40,90,170,0.10) 0 1px, transparent 1px 12px), #E8EFF7'},
+ pegboard:{name:'перфопанель',css:'radial-gradient(circle, rgba(35,40,45,0.26) 0 4px, rgba(35,40,45,0.08) 4px 6px, transparent 6.5px) 0 0/50px 50px, #E2E4E6'},
+ plate:{name:'рифлёный лист',css:PLATE+' 0 0/64px 64px, #DDE0E3'},
+ plain:{name:'без рисунка',css:'#EEEBE5'}
+};
+
+// ---------- вторая серия фонов (05.10.2026): рисунок не заходит под заголовок, фон тетрадей = линовка товара
+const CW={a:{n:'классика',paper:'#F7F5EF',line:'52,102,176'},b:{n:'крем',paper:'#F6EEDD',line:'120,95,70'},c:{n:'мята',paper:'#EAF4EC',line:'40,130,90'},d:{n:'небо',paper:'#E8F0F8',line:'40,90,170'}};
+function ruled(kind,cw){ const c=CW[cw], L=a=>'rgba('+c.line+','+a+')'; let p;
+  if(kind==='line') p='repeating-linear-gradient(180deg, transparent 0 44px, '+L(0.19)+' 44px 46px)';
+  if(kind==='narrow') p='repeating-linear-gradient(180deg, transparent 0 30px, '+L(0.19)+' 30px 32px)';
+  if(kind==='grid') p='repeating-linear-gradient(0deg, '+L(0.17)+' 0 1.5px, transparent 1.5px 30px), repeating-linear-gradient(90deg, '+L(0.17)+' 0 1.5px, transparent 1.5px 30px)';
+  if(kind==='big') p='repeating-linear-gradient(0deg, '+L(0.18)+' 0 2px, transparent 2px 46px), repeating-linear-gradient(90deg, '+L(0.18)+' 0 2px, transparent 2px 46px)';
+  if(kind==='oblique') p='repeating-linear-gradient(115deg, transparent 0 96px, '+L(0.13)+' 96px 98px), repeating-linear-gradient(180deg, transparent 0 22px, '+L(0.19)+' 22px 24px, transparent 24px 46px, '+L(0.19)+' 46px 48px, transparent 48px 84px)';
+  return p+', '+c.paper; }
+const KN={line:'линейка',narrow:'узкая линейка',grid:'клетка',big:'крупная клетка',oblique:'косая линейка'};
+for(const k of Object.keys(KN)) for(const w of Object.keys(CW)) BG[k+'_'+w]={name:KN[k]+' · '+CW[w].n,css:ruled(k,w)};
+const PC=['#E5393B','#F08A24','#F2C21A','#7BBF3A','#1FA36B','#19A7B8','#2F6FD6','#5B4FD0','#9A4FCF','#E0559A','#8A5A3C','#3C3E46'];
+function geo(cols,a){ const S=[['c',770,70,26],['t',862,236,30],['z',30,372,0],['s',868,468,24],['c',26,640,20],['z',850,700,0],['t',34,930,26],['h',866,985,28],['c',120,392,16],['s',792,404,18],['t',112,832,22],['c',800,846,18],['z',380,1166,0],['s',640,150,16]]; let b='';
+  S.forEach((q,i)=>{ const col=cols[i%cols.length], st='fill="none" stroke="'+col+'" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="'+a+'"', x=q[1], y=q[2], r=q[3];
+    if(q[0]==='c') b+='<circle cx="'+x+'" cy="'+y+'" r="'+r+'" '+st+'/>';
+    if(q[0]==='t') b+='<path d="M'+x+' '+(y-r)+' L'+(x+r)+' '+(y+r*0.8)+' L'+(x-r)+' '+(y+r*0.8)+' Z" '+st+' transform="rotate('+(i*23%40-20)+' '+x+' '+y+')"/>';
+    if(q[0]==='s') b+='<rect x="'+(x-r)+'" y="'+(y-r)+'" width="'+2*r+'" height="'+2*r+'" rx="4" '+st+' transform="rotate('+(15+i*17%50)+' '+x+' '+y+')"/>';
+    if(q[0]==='h') b+='<path d="M'+(x-r)+' '+y+' A'+r+' '+r+' 0 0 1 '+(x+r)+' '+y+'" '+st+'/>';
+    if(q[0]==='z') b+='<path d="M'+x+' '+y+' l14 -16 l14 16 l14 -16 l14 16" '+st+'/>'; });
+  return svg(900,1200,b); }
+function halftone(col){ let b=''; for(let y=13;y<1200;y+=26) for(let x=13+((y/26|0)%2)*13;x<900;x+=26){ const d=Math.hypot(900-x,1200-y), r=8.5*(1-d/980); if(r>0.8) b+='<circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'"/>'; } return svg(900,1200,'<g fill="'+col+'" opacity="0.17">'+b+'</g>'); }
+function confetti(){ let b='',i=0; for(let y=30;y<1200;y+=58) for(let x=30+((y/58|0)%2)*29;x<900;x+=58){ i++; if(y<350&&x<770) continue; b+='<circle cx="'+x+'" cy="'+y+'" r="6.5" fill="'+PC[(i*5)%10]+'" opacity="0.30"/>'; } return svg(900,1200,b); }
+function arcs(){ let b=''; for(let i=0;i<7;i++) b+='<circle cx="900" cy="1200" r="'+(110+i*38)+'" fill="none" stroke="'+PC[i]+'" stroke-width="20" opacity="0.24"/>'; for(let i=0;i<4;i++) b+='<circle cx="900" cy="0" r="'+(50+i*34)+'" fill="none" stroke="'+PC[9-i]+'" stroke-width="18" opacity="0.22"/>'; return svg(900,1200,b); }
+const TIPS=svg(900,1200,Array.from({length:15},(_,i)=>'<path d="M'+(i*60)+' 1200 L'+(i*60+30)+' 1156 L'+(i*60+60)+' 1200 Z" fill="'+PC[i%12]+'" opacity="0.85"/><path d="M'+(i*60+22)+' 1168 L'+(i*60+30)+' 1156 L'+(i*60+38)+' 1168 Z" fill="#2B2B30" opacity="0.75"/>').join(''));
+const EDGE=svg(900,1200,PC.map((c,i)=>'<rect x="878" y="'+(i*100)+'" width="22" height="100" fill="'+c+'" opacity="0.88"/>').join(''));
+const DABS=svg(900,1200,['#E5393B','#F08A24','#F2C21A','#1FA36B','#19A7B8','#2F6FD6','#9A4FCF'].map((c,i)=>'<ellipse cx="872" cy="'+(352+i*82)+'" rx="18" ry="16" fill="'+c+'" opacity="0.85" transform="rotate('+(i*37%50-25)+' 872 '+(352+i*82)+')"/><ellipse cx="866" cy="'+(346+i*82)+'" rx="5" ry="3" fill="#fff" opacity="0.45"/>').join(''));
+const TABS=svg(900,1200,['#136F63','#F08A24','#F2C21A','#2F6FD6','#E5393B'].map((c,i)=>'<rect x="872" y="'+(318+i*112)+'" width="60" height="92" rx="12" fill="'+c+'" opacity="0.86"/>').join(''));
+const STACK=svg(900,1200,Array.from({length:6},(_,i)=>'<rect x="'+(866+i*6)+'" y="0" width="1.6" height="1200" fill="rgba(60,70,90,'+(0.14+i*0.03)+')"/>').join('')+'<rect x="864" y="0" width="36" height="1200" fill="rgba(60,70,90,0.05)"/>');
+const FLOUR=svg(900,1200,'<g fill="none" stroke="#2444B8" stroke-linecap="round" opacity="0.17"><path d="M560 150 C600 60 660 60 650 120 S590 190 640 150 S740 60 760 110 S720 180 790 130 S860 80 880 110" stroke-width="3.2"/><path d="M60 800 C140 690 220 690 200 770 S110 850 190 800 S330 690 350 760 S300 850 390 790 S520 700 540 770 S500 850 600 790 S760 720 850 760" stroke-width="3.6"/><path d="M90 860 Q400 900 820 838" stroke-width="2.4"/></g>');
+const PLUS=svg(44,44,'<path d="M22 16v12M16 22h12" stroke="rgba(36,68,184,0.24)" stroke-width="2.2" stroke-linecap="round"/>');
+const PLUSG=svg(44,44,'<path d="M22 16v12M16 22h12" stroke="rgba(70,75,90,0.22)" stroke-width="2.2" stroke-linecap="round"/>');
+const ABC=['Аа Бб Вв Гг Дд Ее Жж Зз Ии Кк Лл','Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх','Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя'];
+const PROPIS='<div style="position:absolute;left:0;top:384px;width:900px;font-family:\'Marck Script\',cursive;font-size:50px;line-height:84px;color:rgba(36,68,184,0.20);white-space:nowrap;padding-left:26px">'+Array.from({length:10},(_,i)=>'<div style="height:84px">'+ABC[i%3]+'</div>').join('')+'</div>';
+Object.assign(BG,{
+ propis:{name:'пропись',css:'linear-gradient(180deg, #F7F5EF 0 336px, rgba(247,245,239,0) 384px), repeating-linear-gradient(115deg, transparent 0 96px, '+INK+'0.10) 96px 98px), repeating-linear-gradient(180deg, transparent 0 22px, '+INK+'0.16) 22px 24px, transparent 24px 46px, '+INK+'0.16) 46px 48px, transparent 48px 84px) 0 384px, #F7F5EF',deco:PROPIS},
+ flourish:{name:'росчерк',css:FLOUR+' 0 0/900px 1200px no-repeat, #F5F4F0'},
+ plus:{name:'плюсы',css:PLUS+' 0 0/44px 44px, #F2F5FB'},
+ plusg:{name:'плюсы серые',css:PLUSG+' 0 0/44px 44px, #F3F3F1'},
+ geo:{name:'геометрия',css:geo(['#2F6FD6','#E5393B','#F2B81A','#19A7B8'],0.30)+' 0 0/900px 1200px no-repeat, #F4F5F8'},
+ geow:{name:'геометрия тёплая',css:geo(['#D3401F','#F08A24','#8A5A3C','#E0559A'],0.28)+' 0 0/900px 1200px no-repeat, #F7F3EC'},
+ diag:{name:'диагональ',css:'repeating-linear-gradient(135deg, rgba(31,95,191,0.055) 0 26px, transparent 26px 52px), #F1F5FB'},
+ diagt:{name:'диагональ бирюзовая',css:'repeating-linear-gradient(135deg, rgba(19,111,99,0.06) 0 26px, transparent 26px 52px), #EEF4F2'},
+ halftone:{name:'полутон',css:halftone('#1F5FBF')+' 0 0/900px 1200px no-repeat, #F3F5FA'},
+ edge:{name:'цветная кромка',css:EDGE+' 0 0/900px 1200px no-repeat, #F6F3EC'},
+ tips:{name:'носики карандашей',css:TIPS+' 0 0/900px 1200px no-repeat, #F6F3EC'},
+ confetti:{name:'конфетти',css:confetti()+' 0 0/900px 1200px no-repeat, #F7F4EE'},
+ arcs:{name:'радужные дуги',css:arcs()+' 0 0/900px 1200px no-repeat, #F6F3EC'},
+ canvas:{name:'холст',css:'repeating-linear-gradient(0deg, rgba(120,100,70,0.11) 0 1px, transparent 1px 4px), repeating-linear-gradient(90deg, rgba(120,100,70,0.11) 0 1px, transparent 1px 4px), #F3EDE1'},
+ dabs:{name:'капли краски',css:DABS+' 0 0/900px 1200px no-repeat, #F5F1EA'},
+ papercool:{name:'акварель холодная',css:'radial-gradient(520px 420px at 100% 4%, rgba(90,170,240,0.30), transparent 70%), radial-gradient(560px 460px at 0% 40%, rgba(110,210,200,0.24), transparent 70%), radial-gradient(620px 480px at 100% 72%, rgba(150,140,245,0.24), transparent 70%), radial-gradient(520px 420px at 6% 100%, rgba(120,200,160,0.24), transparent 70%), #EFF2F1'},
+ paperwarm:{name:'акварель тёплая',css:'radial-gradient(520px 420px at 100% 4%, rgba(255,150,90,0.30), transparent 70%), radial-gradient(560px 460px at 0% 40%, rgba(250,200,90,0.26), transparent 70%), radial-gradient(620px 480px at 100% 72%, rgba(240,120,150,0.24), transparent 70%), radial-gradient(520px 420px at 6% 100%, rgba(255,170,120,0.24), transparent 70%), #F6F0E6'},
+ tabs:{name:'закладки-разделители',css:TABS+' 0 0/900px 1200px no-repeat, #F2F3F5'},
+ greygrid:{name:'серая клетка',css:'repeating-linear-gradient(0deg, rgba(70,80,95,0.10) 0 1.5px, transparent 1.5px 30px), repeating-linear-gradient(90deg, rgba(70,80,95,0.10) 0 1.5px, transparent 1.5px 30px), #F1F2F4'},
+ stack:{name:'стопка листов',css:STACK+' 0 0/900px 1200px no-repeat, #F3F3F1'}
+});
+
+// ---------- третья серия фонов (05.10.2026): маркеры, бейджи, офис, школа, хозтовары, техника, бумага, подарки
+const NEON=['#FFE44D','#7BE06A','#FF7EB6','#FFA94D','#6EC9FF'];
+const HILITE=svg(900,1200,[[18,404,250,0],[640,450,240,2],[18,542,200,1],[670,588,210,3],[18,680,230,2],[650,726,230,0],[18,818,190,3],[690,864,190,1]].map(b=>'<rect x="'+b[0]+'" y="'+b[1]+'" width="'+b[2]+'" height="30" rx="6" fill="'+NEON[b[3]]+'" opacity="0.55"/>').join(''));
+const NEONEDGE=svg(900,1200,NEON.map((c,i)=>'<rect x="878" y="'+(i*240)+'" width="22" height="240" fill="'+c+'"/>').join(''));
+const BADGES=svg(120,150,'<g fill="none" stroke="rgba(19,111,99,0.17)" stroke-width="2.4" stroke-linecap="round"><rect x="24" y="36" width="72" height="92" rx="9"/><path d="M48 50h24"/><path d="M60 36V16"/></g>');
+const RIBBON=svg(900,1200,'<rect x="868" y="0" width="22" height="1200" fill="#136F63" opacity="0.85"/>'+Array.from({length:40},(_,i)=>'<path d="M868 '+(i*30+22)+' l22 -14" stroke="rgba(255,255,255,0.35)" stroke-width="3"/>').join(''));
+const CUTLINES=svg(900,1200,[430,560,690,820,1176].map(y=>'<path d="M52 '+y+' H900" stroke="rgba(70,80,95,0.34)" stroke-width="2.2" stroke-dasharray="14 10"/><g fill="none" stroke="rgba(70,80,95,0.55)" stroke-width="2.2" stroke-linecap="round"><circle cx="16" cy="'+(y-8)+'" r="5.5"/><circle cx="16" cy="'+(y+8)+'" r="5.5"/><path d="M20 '+(y-5)+' L44 '+(y+5)+' M20 '+(y+5)+' L44 '+(y-5)+'"/></g>').join(''));
+const DROPS=svg(76,76,'<path d="M38 16 C47 30 53 37 53 45 a15 15 0 0 1 -30 0 C23 37 29 30 38 16 Z" fill="none" stroke="rgba(40,110,150,0.17)" stroke-width="2.4"/>');
+const CLIPS=svg(110,110,'<path d="M40 30 v44 a13 13 0 0 0 26 0 v-50 a9 9 0 0 0 -18 0 v44 a4 4 0 0 0 8 0 v-34" fill="none" stroke="rgba(60,90,100,0.18)" stroke-width="2.8" stroke-linecap="round" transform="rotate(32 55 55)"/>');
+const CORK=svg(260,260,'<filter id="c"><feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.42  0 0 0 0 0.27  0 0 0 0 0.10  0 0 0 1.3 -0.38"/></filter><rect width="260" height="260" filter="url(#c)"/>');
+const MATH=svg(132,132,'<g fill="none" stroke-width="3" stroke-linecap="round"><path d="M22 34h20M32 24v20" stroke="rgba(211,64,31,0.20)"/><path d="M90 30l16 16M106 30l-16 16" stroke="rgba(52,102,176,0.20)"/><path d="M24 98h20" stroke="rgba(52,102,176,0.20)"/><path d="M88 92h20M88 104h20" stroke="rgba(211,64,31,0.20)"/></g>');
+const CORNERS=svg(84,84,'<g fill="none" stroke="rgba(211,64,31,0.18)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 34V22h12"/><path d="M62 50v12H50"/></g>');
+const BUB=svg(900,1200,[[790,90,30],[860,250,18],[40,384,22],[866,470,34],[28,650,16],[850,720,24],[46,930,30],[860,1000,20],[130,404,14],[790,412,18],[110,840,20],[800,850,14],[700,170,12],[420,1178,14]].map(b=>'<circle cx="'+b[0]+'" cy="'+b[1]+'" r="'+b[2]+'" fill="rgba(110,190,235,0.10)" stroke="rgba(40,140,200,0.34)" stroke-width="2.4"/><path d="M'+(b[0]-b[2]*0.55)+' '+(b[1]-b[2]*0.2)+' A'+b[2]*0.6+' '+b[2]*0.6+' 0 0 1 '+(b[0]-b[2]*0.1)+' '+(b[1]-b[2]*0.6)+'" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.6" stroke-linecap="round"/>').join(''));
+const WAVEB=svg(900,1200,'<path d="M0 1158 Q75 1128 150 1158 T300 1158 T450 1158 T600 1158 T750 1158 T900 1158 V1200 H0Z" fill="#6EC3EE" opacity="0.38"/><path d="M0 1176 Q75 1150 150 1176 T300 1176 T450 1176 T600 1176 T750 1176 T900 1176 V1200 H0Z" fill="#2F8FD0" opacity="0.36"/>');
+const SPARK=svg(120,120,'<path d="M30 14 Q32 28 46 30 Q32 32 30 46 Q28 32 14 30 Q28 28 30 14Z" fill="rgba(21,135,168,0.20)"/><path d="M90 78 Q91 87 100 88 Q91 89 90 98 Q89 89 80 88 Q89 87 90 78Z" fill="rgba(21,135,168,0.16)"/>');
+const CMYK=svg(900,1200,['#19A7E0','#E0338C','#FFD91A','#26262B'].map((c,i)=>'<rect x="878" y="'+(i*300)+'" width="22" height="300" fill="'+c+'"/>').join(''));
+const CIRC=svg(900,1200,'<g fill="none" stroke="rgba(19,111,99,0.30)" stroke-width="3" stroke-linejoin="round"><path d="M900 110 H790 V56 H700"/><path d="M900 190 H830 V250 H770"/><path d="M900 520 H864 V610"/><path d="M900 780 H852 V840 H876"/><path d="M0 1010 H36 V1090"/><path d="M0 930 H30 V880"/><path d="M0 420 H30 V470"/><path d="M900 1010 H866 V1080"/></g><g fill="rgba(19,111,99,0.40)"><circle cx="700" cy="56" r="6"/><circle cx="770" cy="250" r="6"/><circle cx="864" cy="610" r="6"/><circle cx="876" cy="840" r="6"/><circle cx="36" cy="1090" r="6"/><circle cx="30" cy="880" r="6"/><circle cx="30" cy="470" r="6"/><circle cx="866" cy="1080" r="6"/></g>');
+const CROP=svg(900,1200,'<g fill="none" stroke="rgba(60,65,75,0.55)" stroke-width="2">'+[[18,18,1,1],[882,18,-1,1],[18,1182,1,-1],[882,1182,-1,-1]].map(c=>'<path d="M'+c[0]+' '+(c[1]+c[3]*30)+' V'+c[1]+' H'+(c[0]+c[2]*30)+'"/>').join('')+'<circle cx="878" cy="600" r="9"/><path d="M864 600h28M878 586v28"/></g>'+['#19A7E0','#E0338C','#FFD91A','#26262B'].map((c,i)=>'<rect x="'+(60+i*26)+'" y="1178" width="22" height="12" fill="'+c+'" opacity="0.85"/>').join(''));
+function starPts(cx,cy,r){ let p=''; for(let i=0;i<10;i++){ const a=-Math.PI/2+i*Math.PI/5, q=i%2?r*0.42:r; p+=(cx+q*Math.cos(a)).toFixed(1)+','+(cy+q*Math.sin(a)).toFixed(1)+' '; } return p; }
+const STARS=svg(120,120,'<polygon points="'+starPts(30,32,11)+'" fill="rgba(214,160,40,0.34)"/><polygon points="'+starPts(90,90,7)+'" fill="rgba(214,160,40,0.26)"/>');
+const PASP=svg(900,1200,'<g fill="none" stroke="#A0783C"><rect x="14" y="14" width="872" height="1172" stroke-width="2.4" opacity="0.50"/><rect x="23" y="23" width="854" height="1154" stroke-width="1.2" opacity="0.45"/></g>');
+const AIR='repeating-linear-gradient(135deg, #D8443C 0 14px, #FFFFFF 14px 28px, #2F5FB8 28px 42px, #FFFFFF 42px 56px)';
+Object.assign(BG,{
+ hilite:{name:'выделенные строки',css:HILITE+' 0 0/900px 1200px no-repeat, linear-gradient(180deg, #F7F5F0 0 380px, rgba(247,245,240,0) 381px), repeating-linear-gradient(180deg, transparent 0 44px, rgba(70,80,95,0.10) 44px 46px), #F7F5F0'},
+ neonedge:{name:'неоновая кромка',css:NEONEDGE+' 0 0/900px 1200px no-repeat, #F5F5F2'},
+ neondiag:{name:'жёлтая диагональ',css:'repeating-linear-gradient(135deg, rgba(255,214,0,0.16) 0 26px, transparent 26px 52px), #FAF8EC'},
+ badges:{name:'контуры бейджей',css:BADGES+' 0 0/120px 150px, #F1F4F4'},
+ ribbon:{name:'лента',css:RIBBON+' 0 0/900px 1200px no-repeat, #F1F3F4'},
+ cutmat:{name:'раскройный коврик',css:'repeating-linear-gradient(0deg, rgba(255,255,255,0.95) 0 3px, transparent 3px 150px), repeating-linear-gradient(90deg, rgba(255,255,255,0.95) 0 3px, transparent 3px 150px), repeating-linear-gradient(0deg, rgba(255,255,255,0.75) 0 1.5px, transparent 1.5px 30px), repeating-linear-gradient(90deg, rgba(255,255,255,0.75) 0 1.5px, transparent 1.5px 30px), #D5EADF'},
+ cutlines:{name:'линии отреза',css:CUTLINES+' 0 0/900px 1200px no-repeat, #F4F4F1'},
+ drops:{name:'капли',css:DROPS+' 0 0/76px 76px, #F1F5F7'},
+ clips:{name:'скрепки',css:CLIPS+' 0 0/110px 110px, #F2F4F4'},
+ cork:{name:'пробковая доска',css:CORK+' 0 0/260px 260px, #E4CBA2'},
+ corners:{name:'уголки',css:CORNERS+' 0 0/84px 84px, #F8F4EE'},
+ math:{name:'знаки',css:MATH+' 0 0/132px 132px, #F7F5EF'},
+ argyle:{name:'ромбы',css:'linear-gradient(45deg, rgba(211,64,31,0.055) 25%, transparent 25% 75%, rgba(211,64,31,0.055) 75%) 0 0/80px 80px, linear-gradient(45deg, rgba(211,64,31,0.055) 25%, transparent 25% 75%, rgba(211,64,31,0.055) 75%) 40px 40px/80px 80px, #F7F2EA'},
+ tartan:{name:'шотландка',css:'repeating-linear-gradient(0deg, rgba(211,64,31,0.07) 0 34px, transparent 34px 102px), repeating-linear-gradient(90deg, rgba(211,64,31,0.07) 0 34px, transparent 34px 102px), repeating-linear-gradient(0deg, transparent 0 66px, rgba(52,102,176,0.14) 66px 68px, transparent 68px 102px), repeating-linear-gradient(90deg, transparent 0 66px, rgba(52,102,176,0.14) 66px 68px, transparent 68px 102px), #F7F3EC'},
+ tile:{name:'плитка',css:'linear-gradient(rgba(150,170,185,0.40) 0 3px, transparent 3px) 0 0/100px 100px, linear-gradient(90deg, rgba(150,170,185,0.40) 0 3px, transparent 3px) 0 0/100px 100px, linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0) 60%) 0 0/100px 100px, #E9EFF3'},
+ bubbles:{name:'пузыри',css:BUB+' 0 0/900px 1200px no-repeat, #EEF5F9'},
+ wave:{name:'волна',css:WAVEB+' 0 0/900px 1200px no-repeat, #F1F6F9'},
+ sparkle:{name:'блеск',css:SPARK+' 0 0/120px 120px, #F0F6F7'},
+ cmyk:{name:'CMYK-кромка',css:CMYK+' 0 0/900px 1200px no-repeat, #F3F3F1'},
+ circuit:{name:'плата',css:CIRC+' 0 0/900px 1200px no-repeat, #EFF3F2'},
+ pixel:{name:'пиксели',css:svg(24,24,'<rect x="3" y="3" width="6" height="6" fill="rgba(70,80,95,0.15)"/>')+' 0 0/24px 24px, #F2F3F5'},
+ airmail:{name:'авиапочта',css:AIR+' 0 0/100% 12px no-repeat, '+AIR+' 0 100%/100% 12px no-repeat, '+AIR+' 0 0/12px 100% no-repeat, '+AIR+' 100% 0/12px 100% no-repeat, #F6F4EF'},
+ cropmarks:{name:'метки реза',css:CROP+' 0 0/900px 1200px no-repeat, #F4F4F2'},
+ stars:{name:'звёзды',css:STARS+' 0 0/120px 120px, #F7F3EA'},
+ passepartout:{name:'рамка-паспарту',css:PASP+' 0 0/900px 1200px no-repeat, #F5F1EA'}
+});
+const FONT={grotesk:{family:"'Manrope', sans-serif",weight:800,k:0.62,max:72,extra:'line-height:1;letter-spacing:-0.02em'},
+ tech:{family:"'Oswald', sans-serif",weight:600,k:0.54,max:78,extra:'line-height:1.05;text-transform:uppercase;letter-spacing:0.01em'},
+ serif:{family:"'Cormorant Garamond', Georgia, serif",weight:700,k:0.48,max:84,extra:'line-height:0.95'},
+ compact:{family:"'Oswald', sans-serif",weight:600,k:0.45,max:76,extra:'line-height:1.05'}};
+function shade(hex,m){const n=parseInt(hex.slice(1),16);return 'rgb('+Math.round(((n>>16)&255)*m)+','+Math.round(((n>>8)&255)*m)+','+Math.round((n&255)*m)+')'}
+async function render(d){
+  const $=id=>document.getElementById(id), q=d.qty, f=d.forms.split('|'), n10=q%10, n100=q%100;
+  const unit=(n10===1&&n100!==11)?f[0]:(n10>=2&&n10<=4&&(n100<12||n100>14))?f[1]:f[2];
+  const root=$('root'), b=BG[d.bg]||BG.plain; root.style.background=b.css; $('deco').innerHTML=b.deco||'';
+  $('plaque').style.background=d.accent; $('plaque').style.display=d.plaque===false?'none':'flex'; $('num').textContent=q; $('unit').textContent=unit;
+  $('line2').textContent=d.line2||''; $('line2').style.display=d.line2?'block':'none';
+  let ft=FONT[d.font]; const fit=o=>Math.min(o.max,Math.floor(776/(Math.max(8,d.heading.length)*o.k)));
+  if(fit(ft)<56) ft=FONT.compact; const size=Math.max(44,fit(ft));
+  $('h').style.cssText='margin:0;white-space:nowrap;font-family:'+ft.family+';font-weight:'+ft.weight+';font-size:'+size+'px;'+ft.extra;
+  $('h').textContent=d.heading; $('sub').textContent=d.sub;
+  $('sub').style.cssText='white-space:nowrap;font-size:30px'; await document.fonts.load('600 30px Manrope'); let ss=30; while($('sub').scrollWidth>788 && ss>22){ ss-=1; $('sub').style.fontSize=ss+'px'; }
+  await document.fonts.load(ft.weight+' '+size+'px '+ft.family.split(',')[0]); let hs=size; while($('h').scrollWidth>788 && hs>36){ hs-=2; $('h').style.fontSize=hs+'px'; }
+  $('chips').innerHTML=d.chips.map(t=>'<div class="chip"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="'+d.accent+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div></div></div>').join('');
+  [...document.querySelectorAll('.chip div')].forEach((e,i)=>e.textContent=d.chips[i]);
+  const zone=$('zone'); zone.innerHTML=''; const panel=d.tone==='panel', white=d.tone==='white';
+  zone.style.cssText='position:relative;flex:1 1 0;min-height:0'+(panel?';border-radius:28px;overflow:hidden;background:linear-gradient(155deg,'+d.accent+' 0%,'+shade(d.accent,0.62)+' 100%)':(white?';border-radius:28px;background:#FFFFFF':''));
+  await document.fonts.ready;
+  const zr=zone.getBoundingClientRect(), P=panel?28:0, W=zr.width-2*P, H=zr.height-2*P, R=d.ratio, sr=panel?18:26;
+  if(d.layout==='grid'){
+    const k=d.displayQty||q, gap=16; let best=null;
+    for(let rows=1;rows<=k;rows++){let cols=Math.ceil(k/rows),ww=Math.min((W-(cols-1)*gap)/cols,R*(H-(rows-1)*gap)/rows),hh=ww/R,score=ww*hh;if(!best||score>best.score)best={rows,cols,w:Math.floor(ww),h:Math.floor(hh),score};}
+    const ps=[];let y=P+Math.round((H-(best.rows*best.h+(best.rows-1)*gap))/2),remaining=k;
+    for(let r=0;r<best.rows;r++){let n=Math.min(best.cols,remaining),x=P+Math.round((W-(n*best.w+(n-1)*gap))/2);for(let j=0;j<n;j++){let im=new Image();im.src=d.img;im.style.cssText='left:'+(x+j*(best.w+gap))+'px;top:'+y+'px;width:'+best.w+'px;height:'+best.h+'px;object-fit:contain';zone.appendChild(im);ps.push(im.decode());}remaining-=n;y+=best.h+gap;}
+    await Promise.all(ps);return {mode:'grid',copies:k,w:best.w,h:best.h,subsize:ss,subw:$('sub').scrollWidth,chipsH:Math.round($('chips').getBoundingClientRect().height),zoneH:Math.round(zr.height),hsize:hs,font:ft===FONT.compact?'compact':d.font,hw:Math.round($('h').getBoundingClientRect().width),overflow:root.scrollHeight>1200};
+  }
+  const k=d.copies?d.copies:Math.max(1,Math.min(40,q)); let sx=0,sy=0,dx=0,dy=0,w,h,mode='diag',pvx=0,pvy=0,pdim=false;
+  if(k===1){ w=Math.floor(Math.min(W,(H-sr)*R)); h=Math.round(w/R); }
+  else if(d.compactCord){ mode='cord-stack'; sx=Math.min(30*(k-1),210); sy=Math.min(12*(k-1),96); dx=sx/(k-1); dy=sy/(k-1); w=Math.floor(Math.min(W-sx,(H-sr-sy)*R)); h=Math.round(w/R); }
+  else if((d.elong||0)>2.2){ mode='perp'; const th=(d.axis||0)*Math.PI/180; let nx=-Math.sin(th), ny=Math.cos(th); if(Math.abs(nx)>Math.cos(22*Math.PI/180)){nx=1;ny=0;} else if(Math.abs(ny)>Math.cos(22*Math.PI/180)){nx=0;ny=-1;} if(ny>0||(Math.abs(ny)<0.2&&nx<0)){nx=-nx;ny=-ny;}
+    const Hs=H-sr, sF=T=>Math.min(W/(R+Math.abs(nx)*T),Hs/(1+Math.abs(ny)*T)), s1=sF(0), T0=1.12*(d.thick||0.2)*(k-1); let T=T0;
+    if(sF(T0)<0.6*s1){ let lo=0,hi=T0; for(let j=0;j<30;j++){ const m=(lo+hi)/2; if(sF(m)>=0.6*s1) lo=m; else hi=m; } T=lo; }
+    const sc0=sF(T); h=Math.round(sc0); w=Math.round(sc0*R); pvx=nx*T*sc0/(k-1); pvy=ny*T*sc0/(k-1); sx=Math.abs(pvx)*(k-1); sy=Math.abs(pvy)*(k-1); pdim=(T<T0*0.99); }
+  else if(R<0.5){ mode='row'; h=Math.round(H-sr); w=Math.round(h*R); if(w*k*1.06>W && k<=6){ w=Math.floor(W/(k*1.06)); h=Math.round(w/R); } dx=Math.min(w*1.06,(W-w)/(k-1)); sx=dx*(k-1); }
+  else if(R>2.2){ mode='col'; h=Math.min(W/R,(H-sr)/(1+(k-1)*0.55)); w=Math.round(h*R); h=Math.round(h); dy=Math.min(h*1.08,(H-sr-h)/(k-1)); sy=dy*(k-1); }
+  else if(R>1.55){ mode='vert'; sx=Math.min(22*(k-1),120); dx=sx/(k-1); const spread=Math.min(0.18*(k-1),0.9); h=Math.min((H-sr)/(1+spread),(W-sx)/R); w=Math.round(h*R); h=Math.round(h); sy=Math.min(spread*h,H-sr-h); dy=sy/(k-1); }
+  else { sx=Math.min(44*(k-1),110+6.5*k,330); dx=sx/(k-1); dy=dx*0.45; sy=dy*(k-1); w=Math.floor(Math.min(W-sx,(H-sr-sy)*R)); h=Math.round(w/R); }
+  const x0=P+Math.round((W-(w+sx))/2), y0=P+Math.max(0,Math.round((H-sr-(h+sy))/2)), sc=panel?'0,0,0':'30,25,20';
+  const ps=[];
+  for(let i=0;i<k;i++){
+    const br=(k===1||mode==='row'||(mode==='perp'&&!pdim))?1:(0.84+0.16*i/(k-1));
+    const sh=(i===k-1||mode==='row'||(mode==='perp'&&!pdim))?' drop-shadow(0 16px 20px rgba('+sc+','+(panel?'0.45':'0.30')+'))':' drop-shadow(0 2px 3px rgba('+sc+',0.26))';
+    const im=new Image(); im.src=d.img;
+    let px=Math.round(mode==='row'?x0+i*dx:x0+(k-1-i)*dx), py=Math.round(y0+i*dy);
+    if(mode==='perp'){ const fx=x0+(pvx<0?sx:0), fy=y0+(pvy<0?sy:0); px=Math.round(fx+pvx*(k-1-i)); py=Math.round(fy+pvy*(k-1-i)); }
+    im.style.cssText='top:'+py+'px;left:'+px+'px;width:'+w+'px;height:'+h+'px;filter:brightness('+br.toFixed(2)+')'+sh;
+    zone.appendChild(im); ps.push(im.decode().catch(()=>{}));
+  }
+  await Promise.all(ps);
+  return {subsize:ss,subw:$('sub').scrollWidth,chipsH:Math.round($('chips').getBoundingClientRect().height),zoneH:Math.round(zr.height),w:w,h:h,mode:mode,hsize:hs,font:ft===FONT.compact?'compact':d.font,size:size,hw:Math.round($('h').getBoundingClientRect().width),overflow:root.scrollHeight>1200};
+}
+</script></body></html>

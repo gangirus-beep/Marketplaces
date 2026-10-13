@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';import {chromium} from 'playwright';
+const root=process.env.WB_REISSUE_ROOT||process.cwd(),G=JSON.parse(await fs.readFile(root+'/reissue/goods.json','utf8')),A=JSON.parse(await fs.readFile(root+'/reissue/assets.json','utf8')),start=Number(process.argv[2]||0),end=Number(process.argv[3]||G.length),only=new Set(process.argv.slice(4));
+const bg={'Т11':'line_a','Т12':'line_b','Т13':'line_c','Т21':'grid_a','Т22':'grid_b','Т23':'grid_c','Т24':'grid_d','Т31':'oblique_a','Т41':'narrow_a','Т51':'big_a'};
+const b=await chromium.launch({...(process.env.WB_CHROMIUM?{executablePath:process.env.WB_CHROMIUM}:{}),args:['--no-sandbox','--single-process','--disable-gpu','--allow-file-access-from-files']});const pg=await b.newPage({viewport:{width:900,height:1200}});await pg.goto('file://'+root+'/gen/cover.html');await pg.addScriptTag({path:root+'/gen/stage/render_assorti.js'});
+const log=[];for(const g of G.slice(start,end)){if(only.size&&!only.has(g.id))continue;const a=A[g.id];if(!a)throw Error('Missing '+g.id);const t=g.text;
+for(const c of g.cards){const q=Number(c['Квант, шт']),stage=c['Этап']==='этап 1'?'stage1':'stage2',dir=root+'/reissue/covers/'+stage;await fs.mkdir(dir,{recursive:true});const url=n=>'file://'+root+'/reissue/assets/'+n;
+const d={qty:q,forms:t['Формы слова в плашке'],heading:t['Заголовок'],sub:t['Подзаголовок'],chips:[1,2,3,4].map(i=>t['Подпись '+i]),bg:bg[c['Фон'].split(' ')[0]],tone:c['Тон обложки'].startsWith('тёмная')?'panel':'light',accent:'#D3401F',font:'grotesk',img:url(a.img),ratio:a.ratio,line2:'в наборе',plaque:g.cards.some(c=>Number(c['Квант, шт'])!==1),assorti:g.assorti==='ассорти',variants:a.variants.map(url)};
+if(g.unit==='набор'){d.line2='по 5 тетрадей';d.copies=1;}const r=await pg.evaluate(d=>renderAssorti(d),d);if(r.overflow||r.hw>788)throw Error('Overflow '+c['Файл обложки']);await pg.screenshot({path:dir+'/'+c['Файл обложки'],type:'jpeg',quality:92,clip:{x:0,y:0,width:900,height:1200}});log.push({id:g.id,code:g.code,file:c['Файл обложки'],stage,q,assorti:d.assorti,...r});}
+if(log.length%50<g.cards.length)console.log('Rendered',log.length);}
+await b.close();await fs.writeFile(root+'/reissue/coverlog_'+start+'_'+end+'.json',JSON.stringify(log,null,1));console.log('done',log.length);
+
