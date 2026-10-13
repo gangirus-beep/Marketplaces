@@ -5,7 +5,8 @@
 - [Этап 1: 53 замены](stage-1-replacements.zip)
 - [Этап 2: 86 замен](stage-2-replacements.zip)
 - [Документы: паспорт v26, реестр v14, генератор v18, START_CODEX, отчёт и список замен](documents-v26-v14-v18.zip)
-- [HTML с 46 сравнениями](preview.html)
+- [Просмотр: ZIP с HTML и 46 сравнениями](preview.zip) — скачать, распаковать и открыть preview.html в браузере
+- [Исходный HTML](preview.html)
 - [Отчёт проверки](report.md)
 
 Для ZIP откройте файл и нажмите **Download raw file** (значок скачивания). HTML тоже скачайте через **Download raw file**, затем откройте сохранённый файл в браузере. На странице GitHub HTML как сайт не отображается.
